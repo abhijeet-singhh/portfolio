@@ -1,3 +1,10 @@
+import { Container } from "@/components/core/Container";
+import { Navbar } from "@/components/core/navbar";
+
 export default function HomePage() {
-  return <div></div>;
+  return (
+    <Container>
+      <Navbar />
+    </Container>
+  );
 }
