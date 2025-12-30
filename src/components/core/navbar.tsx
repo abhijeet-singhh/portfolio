@@ -10,6 +10,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { ReactElement, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "./theme-toggle";
 
 interface NavItemsProps {
   label: string;
@@ -131,6 +132,7 @@ const Navbar = () => {
             </AnimatePresence>
           </div>
         ))}
+        <ThemeToggle />
       </motion.div>
     </Container>
   );
