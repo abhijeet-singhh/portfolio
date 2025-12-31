@@ -1,11 +1,5 @@
 "use client";
 
-import {
-  GithubLogoIcon,
-  LinkedinLogoIcon,
-  XLogoIcon,
-} from "@phosphor-icons/react";
-import { SiBento } from "react-icons/si";
 import { Container } from "../core/Container";
 import { ReactElement, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
@@ -13,12 +7,7 @@ import Link from "next/link";
 import { CgNotes } from "react-icons/cg";
 import { IoIosSend } from "react-icons/io";
 import { cn } from "@/lib/utils";
-
-interface socialLinkProps {
-  icon: ReactElement;
-  label: string;
-  link: string;
-}
+import { personalInfo, SocialLinkProps, socialLinks } from "@/data/personal";
 
 type TooltipProps = {
   label: string;
@@ -37,29 +26,6 @@ const Tooltip = ({ label }: TooltipProps) => {
     </motion.div>
   );
 };
-
-const socialLinks: socialLinkProps[] = [
-  {
-    icon: <XLogoIcon weight="bold" className="size-6" />,
-    label: "Twitter",
-    link: "https://x.com/abhijeet_tw",
-  },
-  {
-    icon: <GithubLogoIcon weight="bold" className="size-6" />,
-    label: "GitHub",
-    link: "https://github.com/abhijeet-singhh",
-  },
-  {
-    icon: <LinkedinLogoIcon weight="bold" className="size-6" />,
-    label: "LinkedIn",
-    link: "#",
-  },
-  {
-    icon: <SiBento className="size-6" />,
-    label: "Bento",
-    link: "https://bento.me/abhi-dev",
-  },
-];
 
 const Hero = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -88,7 +54,7 @@ const Hero = () => {
           )}
         >
           <img
-            src="/seven-mustard.png"
+            src={personalInfo.image}
             alt="ProfileImage"
             className={cn("w-36", "md:w-40", "lg:w-72")}
           />
@@ -101,7 +67,7 @@ const Hero = () => {
               "lg:text-black",
             )}
           >
-            Abhijeet Singh
+            {personalInfo.name}
           </div>
           <div
             className={cn(
@@ -130,31 +96,34 @@ const Hero = () => {
               "lg:ml-0 lg:mt-6",
             )}
           >
-            {socialLinks.map((item, index) => (
-              <div
-                key={index}
-                className="relative flex flex-col items-center"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <Link
-                  href={item.link}
-                  target={item.link.startsWith("http") ? "_blank" : "_self"}
-                  rel={
-                    item.link.startsWith("http")
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                  className="hover:bg-background-alt p-2 rounded-lg cursor-pointer transition-colors duration-300"
-                  aria-label={item.label}
+            {socialLinks.map((item: SocialLinkProps, index: number) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="relative flex flex-col items-center"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  {item.icon}
-                </Link>
-                <AnimatePresence>
-                  {hoveredIndex === index && <Tooltip label={item.label} />}
-                </AnimatePresence>
-              </div>
-            ))}
+                  <Link
+                    href={item.link}
+                    target={item.link.startsWith("http") ? "_blank" : "_self"}
+                    rel={
+                      item.link.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    className="hover:bg-background-alt p-2 rounded-lg cursor-pointer transition-colors duration-300"
+                    aria-label={item.label}
+                  >
+                    <Icon weight="bold" className="size-6" />
+                  </Link>
+                  <AnimatePresence>
+                    {hoveredIndex === index && <Tooltip label={item.label} />}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -189,15 +158,12 @@ const Hero = () => {
         </div>
         <p
           className={cn(
-            "text-muted-foreground text-[18px] mt-5",
+            "text-gray-400 text-[18px] mt-5",
             "md:mt-2",
             "lg:w-[480px] lg:mt-0 lg:ml-2",
           )}
         >
-          I build full-stack web applications, working on everything from clean,
-          responsive interfaces to reliable backend systems. I enjoy figuring
-          out how things fit together and turning ideas into simple, polished
-          products people actually enjoy using.
+          {personalInfo.bio}
         </p>
         <div
           className={cn(
