@@ -1,18 +1,27 @@
 import type { Metadata } from "next";
-import { Caveat, Poppins } from "next/font/google";
+import { Caveat, Hanken_Grotesk, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/core/theme-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700"],
+  display: "swap",
 });
 
 const caveat = Caveat({
   subsets: ["latin"],
   variable: "--font-caveat",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500"],
+  display: "swap",
+});
+
+const hankenGrotesk = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-hanken",
+  weight: ["400", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +38,7 @@ export default function RootLayout({
     // added className dark to make the theme only dark as default
     <html lang="en" className="dark">
       <body
-        className={`${poppins.variable} antialiased ${caveat.variable} antialiased`}
+        className={`${poppins.variable} ${caveat.variable} ${hankenGrotesk.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"

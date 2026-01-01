@@ -49,7 +49,7 @@ const StarButton = () => {
       href="https://github.com/abhijeet-singhh/portfolio"
       target="_blank"
       rel="noopener noreferrer"
-      className="absolute top-3 right-3 px-3 py-0.5 border border-border bg-muted hidden md:flex items-center gap-2 rounded-[8px] hover:bg-background/80 transition-all duration-200 w-fit"
+      className="absolute top-3 right-3 px-3 py-0.5 border border-border bg-muted hidden md:flex items-center gap-2 rounded-[8px] hover:bg-background/80 transition-all duration-200 w-fit z-10"
     >
       <StarIcon className="size-4" aria-hidden />
       <span className="text-sm">Star</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Container } from "../core/Container";
-import { ReactElement, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { CgNotes } from "react-icons/cg";
@@ -35,7 +35,7 @@ const Hero = () => {
       className={cn(
         "flex flex-col justify-center pt-10 px-6 w-full",
         "md:pt-30",
-        "lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-border lg:pb-10",
+        "lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-border lg:pb-10 lg:px-0",
       )}
     >
       {/* Card */}
@@ -43,7 +43,7 @@ const Hero = () => {
         className={cn(
           "h-fit relative overflow-hidden",
           "flex items-center gap-3",
-          "lg:flex lg:flex-col lg:items-center lg:w-[335px] lg:py-[28px] lg:bg-background-card-custom lg:rounded-2xl",
+          "lg:flex lg:flex-col lg:items-center lg:w-[310px] lg:py-[20px] lg:bg-background-card-custom lg:rounded-2xl",
         )}
       >
         <div
@@ -56,7 +56,7 @@ const Hero = () => {
           <img
             src={personalInfo.image}
             alt="ProfileImage"
-            className={cn("w-36", "md:w-40", "lg:w-72")}
+            className={cn("w-36", "md:w-40", "lg:w-64")}
           />
         </div>
         <div className={cn("flex flex-col gap-3", "lg:items-center")}>
@@ -64,7 +64,7 @@ const Hero = () => {
             className={cn(
               "font-caveat font-semibold text-[26px] text-foreground",
               "md:text-[36px]",
-              "lg:text-black",
+              "lg:text-gray-800",
             )}
           >
             {personalInfo.name}
@@ -153,7 +153,7 @@ const Hero = () => {
             className={cn(
               "font-bold text-[30px] text-foreground tracking-tighter",
               "md:text-[60px]",
-              "lg:text-[110px] lg:leading-none",
+              "lg:text-[100px] lg:leading-none",
             )}
           >
             FULLSTACK
@@ -162,7 +162,7 @@ const Hero = () => {
             className={cn(
               "font-bold text-[30px] text-[#353334] tracking-tighter",
               "md:text-[60px]",
-              "lg:text-[110px] lg:mt-5",
+              "lg:text-[100px] lg:mt-5",
             )}
           >
             DEVELOPER
@@ -170,7 +170,7 @@ const Hero = () => {
         </div>
         <p
           className={cn(
-            "text-muted-foreground text-[18px] mt-5",
+            "font-hanken text-muted-foreground text-[18px] mt-5",
             "md:mt-2",
             "lg:w-[480px] lg:mt-0 lg:ml-2",
           )}

@@ -112,7 +112,7 @@ const Navbar = () => {
         }
         transition={{ duration: 0.3 }}
         className={cn(
-          "fixed flex items-center gap-5 px-4 py-1 rounded-2xl border border-border bg-background",
+          "fixed flex items-center gap-5 px-4 py-1 rounded-2xl border-2 border-border/40 bg-background/15 backdrop-blur-md z-10",
           "bottom-4 left-1/2 -translate-x-1/2",
           "md:top-4 md:bottom-auto",
         )}
