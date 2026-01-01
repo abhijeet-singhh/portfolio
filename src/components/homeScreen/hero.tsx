@@ -71,20 +71,32 @@ const Hero = () => {
           </div>
           <div
             className={cn(
-              "flex items-center gap-2 border border-green-700 rounded-md px-2 py-1 w-fit",
+              "flex items-center gap-2 border border-green-500 rounded-md px-2 py-1 w-fit",
               "md:px-3 md:py-2",
+              "lg:border-green-600",
             )}
           >
             <span
               className={cn(
-                "w-2 h-2 rounded-full bg-green-700 animate-pulse",
+                "w-2 h-2 rounded-full bg-green-500 animate-pulse",
                 "md:w-3 md:h-3",
+                "lg:bg-green-600",
               )}
             ></span>
-            <span className="md:hidden text-green-700 text-sm font-semibold leading-none mb-[2px]">
+            <span
+              className={cn(
+                "md:hidden text-green-500 text-sm font-semibold leading-none mb-[2px]",
+                "lg:text-green-600",
+              )}
+            >
               Available
             </span>
-            <span className="hidden md:block text-green-700 text-sm font-semibold leading-none mb-[2px]">
+            <span
+              className={cn(
+                "hidden md:block text-green-500 text-sm font-semibold leading-none mb-[2px]",
+                "lg:text-green-600",
+              )}
+            >
               Available for remote roles
             </span>
           </div>
@@ -158,7 +170,7 @@ const Hero = () => {
         </div>
         <p
           className={cn(
-            "text-gray-400 text-[18px] mt-5",
+            "text-muted-foreground text-[18px] mt-5",
             "md:mt-2",
             "lg:w-[480px] lg:mt-0 lg:ml-2",
           )}
@@ -174,7 +186,7 @@ const Hero = () => {
         >
           <button
             className={cn(
-              "flex justify-center items-center gap-2 text-black px-4 py-1 rounded-full cursor-pointer border border-foreground/50 text-foreground/90 hover:bg-foreground/5",
+              "flex justify-center items-center gap-2 text-black px-4 py-1 rounded-full cursor-pointer border border-foreground/50 text-foreground/90 hover:bg-foreground/7",
               "md:px-7 md:py-2",
             )}
           >
