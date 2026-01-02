@@ -30,6 +30,25 @@ export interface SkillsProps {
   text: string;
 }
 
+export interface ProjectLinks {
+  icon: string;
+  label: string;
+  href?: string;
+  external?: boolean;
+  type?: "link" | "action";
+}
+
+export interface ProjectsProps {
+  id: number;
+  img: string;
+  title: string;
+  status: boolean;
+  content: string;
+  skills: string[];
+  links: ProjectLinks[];
+  preview: string;
+}
+
 export const skills: SkillsProps[] = [
   { id: 1, icon: DiJavascript, text: "JavaScript" },
   { id: 2, icon: TbBrandTypescript, text: "TypeScript" },
@@ -55,3 +74,33 @@ export const skills: SkillsProps[] = [
   { id: 22, icon: VscTerminalLinux, text: "Linux" },
   { id: 23, icon: SiVercel, text: "Vercel" },
 ] as const;
+
+export const projects: ProjectsProps[] = [
+  {
+    id: 1,
+    img: "/Flicknest.png",
+    title: "FlickNest",
+    status: true,
+    content:
+      "A newspaper-inspired website combining classic layouts with modern design for an authentic feel. Covered the rise in crime in India, offering insightful and engaging news stories on this pressing issue. Added animations and moving visuals to deliver a dynamic and immersive user experience.",
+    skills: ["React", "TypeScript", "Tailwind", "GSAP", "Motion"],
+    links: [
+      {
+        icon: "GithubLogoIcon",
+        label: "GitHub",
+        href: "https://github.com/abhijeet-singhh/FlickNest",
+        external: true,
+        type: "link",
+      },
+      {
+        icon: "LinkIcon",
+        label: "Live",
+        href: "https://flicknestapp.netlify.app",
+        external: true,
+        type: "link",
+      },
+      { icon: "ExportIcon", label: "Share", type: "action" },
+    ],
+    preview: "/assets/Videos/demo/TheDailyCrimes.mp4",
+  },
+];

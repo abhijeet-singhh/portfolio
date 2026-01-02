@@ -8,24 +8,7 @@ import { CgNotes } from "react-icons/cg";
 import { IoIosSend } from "react-icons/io";
 import { cn } from "@/lib/utils";
 import { personalInfo, SocialLinkProps, socialLinks } from "@/data/personal";
-
-type TooltipProps = {
-  label: string;
-};
-
-const Tooltip = ({ label }: TooltipProps) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 15 }}
-      transition={{ duration: 0.25 }}
-      className="absolute top-[-25px] bg-muted-foreground text-white text-[12px] px-2 py-0.5 rounded-md whitespace-nowrap z-10"
-    >
-      {label}
-    </motion.div>
-  );
-};
+import { CustomTooltip } from "../core/custom-tooltip";
 
 const Hero = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -131,7 +114,9 @@ const Hero = () => {
                     <Icon weight="bold" className="size-6" />
                   </Link>
                   <AnimatePresence>
-                    {hoveredIndex === index && <Tooltip label={item.label} />}
+                    {hoveredIndex === index && (
+                      <CustomTooltip label={item.label} />
+                    )}
                   </AnimatePresence>
                 </div>
               );

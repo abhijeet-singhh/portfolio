@@ -7,10 +7,7 @@ import { cn } from "@/lib/utils";
 const Skills = () => {
   return (
     <Container
-      className={cn(
-        "flex flex-col justify-center mt-20 max-w-4xl px-6",
-        "lg:px-0",
-      )}
+      className={cn("flex flex-col justify-center mt-20 px-6", "lg:px-0")}
     >
       <SectionHeading subHeading="Technologies &" heading="Skills" />
       <div className={cn("flex items-center gap-2 flex-wrap mt-5", "lg:gap-3")}>
