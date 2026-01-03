@@ -78,12 +78,12 @@ export const skills: SkillsProps[] = [
 export const projects: ProjectsProps[] = [
   {
     id: 1,
-    img: "/Flicknest.png",
+    img: "/projects/flicknest-mockup.png",
     title: "FlickNest",
     status: true,
     content:
-      "A newspaper-inspired website combining classic layouts with modern design for an authentic feel. Covered the rise in crime in India, offering insightful and engaging news stories on this pressing issue. Added animations and moving visuals to deliver a dynamic and immersive user experience.",
-    skills: ["React", "TypeScript", "Tailwind", "GSAP", "Motion"],
+      "A web app for movie and TV show enthusiasts to explore trending, popular, and new releases. Watch trailers, browse casts, discover recommended and similar titles, and search for your favorites.",
+    skills: ["React", "TypeScript", "Tailwind", "Redux Toolkit"],
     links: [
       {
         icon: "GithubLogoIcon",
@@ -101,6 +101,6 @@ export const projects: ProjectsProps[] = [
       },
       { icon: "ExportIcon", label: "Share", type: "action" },
     ],
-    preview: "/assets/Videos/demo/TheDailyCrimes.mp4",
+    preview: "#",
   },
 ];

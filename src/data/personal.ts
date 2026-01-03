@@ -25,7 +25,7 @@ export interface SocialLinkProps {
 export const personalInfo: PersonalInfoProps = {
   name: "Abhijeet Singh",
   bio: "I build full-stack web applications, working on everything from clean, responsive interfaces to reliable backend systems. I enjoy figuring out how things fit together and turning ideas into simple, polished products people actually enjoy using.",
-  image: "/seven-mustard.png",
+  image: "/assets/seven-mustard.png",
 } as const;
 
 export const socialLinks: SocialLinkProps[] = [

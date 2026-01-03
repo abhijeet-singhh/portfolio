@@ -55,6 +55,8 @@
   --radius-4xl: calc(var(--radius) + 16px);
 
   --color-background-card-custom: var(--background-card-custom);
+  --color-muted-custom: var(--muted-custom);
+  --color-card-custom: var(--card-custom);
 
   @keyframes skeleton {
     to {
@@ -109,6 +111,8 @@
   --warning-foreground: var(--color-amber-700);
 
   --background-card-custom: var(--color-zinc-100);
+  --muted-custom: var(--color-zinc-500);
+  --card-custom: oklch(1 0 0);
 }
 
 .dark {
@@ -159,7 +163,9 @@
   --warning: var(--color-amber-500);
   --warning-foreground: var(--color-amber-400);
 
-  --background-card-custom: #fff;
+  --background-card-custom: var(--color-zinc-200);
+  --muted-custom: var(--color-zinc-400);
+  --card-custom: oklch(0.205 0 0);
 }
 
 @layer base {
@@ -169,4 +175,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Some custom css */
+
+.project-card-shadow {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }

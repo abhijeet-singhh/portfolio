@@ -2,7 +2,7 @@
 
 import { Container } from "../core/Container";
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { CgNotes } from "react-icons/cg";
 import { IoIosSend } from "react-icons/io";
@@ -136,7 +136,7 @@ const Hero = () => {
         >
           <span
             className={cn(
-              "font-bold text-[30px] text-foreground tracking-tighter",
+              "font-bold text-[30px] text-shadow-muted-foreground tracking-tighter",
               "md:text-[60px]",
               "lg:text-[100px] lg:leading-none",
             )}
@@ -171,7 +171,7 @@ const Hero = () => {
         >
           <button
             className={cn(
-              "flex justify-center items-center gap-2 text-black px-4 py-1 rounded-full cursor-pointer border border-foreground/50 text-foreground/90 hover:bg-foreground/7",
+              "flex justify-center items-center gap-2 px-4 py-1 rounded-full cursor-pointer border border-foreground/50 text-foreground/90 hover:bg-foreground/7",
               "md:px-7 md:py-2",
             )}
           >
