@@ -29,7 +29,7 @@ const Tooltip = ({ label }: TooltipProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.25 }}
-      className="absolute bottom-[-32px] bg-muted text-foreground text-[12px] px-2 py-0.5 rounded-md whitespace-nowrap z-10"
+      className="absolute bottom-[-32px] bg-tooltip text-foreground text-[12px] px-2 py-0.5 rounded-md whitespace-nowrap z-10"
     >
       {label}
     </motion.div>

@@ -57,6 +57,7 @@
   --color-background-card-custom: var(--background-card-custom);
   --color-muted-custom: var(--muted-custom);
   --color-card-custom: var(--card-custom);
+  --color-tooltip: var(--tooltip);
 
   @keyframes skeleton {
     to {
@@ -113,6 +114,7 @@
   --background-card-custom: var(--color-zinc-100);
   --muted-custom: var(--color-zinc-500);
   --card-custom: oklch(1 0 0);
+  --tooltip: var(--color-stone-100);
 }
 
 .dark {
@@ -166,6 +168,7 @@
   --background-card-custom: var(--color-zinc-200);
   --muted-custom: var(--color-zinc-400);
   --card-custom: oklch(0.205 0 0);
+  --tooltip: var(--color-neutral-800);
 }
 
 @layer base {

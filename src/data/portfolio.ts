@@ -103,4 +103,31 @@ export const projects: ProjectsProps[] = [
     ],
     preview: "#",
   },
+  {
+    id: 2,
+    img: "/projects/mockryze-mockup.png",
+    title: "Mockryze",
+    status: false,
+    content:
+      "A web platform that delivers role-based, voice-driven AI mock interviews, helping users practice English communication, build confidence, and prepare for real job interviews.",
+    skills: ["NextJs", "TypeScript", "Tailwind", "PostgreSQL", "Drizzle"],
+    links: [
+      {
+        icon: "GithubLogoIcon",
+        label: "GitHub",
+        href: "https://github.com/abhijeet-singhh/mockryze",
+        external: true,
+        type: "link",
+      },
+      {
+        icon: "LinkIcon",
+        label: "Live",
+        href: "#",
+        external: true,
+        type: "link",
+      },
+      { icon: "ExportIcon", label: "Share", type: "action" },
+    ],
+    preview: "#",
+  },
 ];

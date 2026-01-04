@@ -14,6 +14,7 @@ import {
 import { AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { CustomTooltip } from "./custom-tooltip";
+import { cn } from "@/lib/utils";
 
 const ICONS: Record<string, React.ElementType> = {
   GithubLogoIcon,
@@ -21,12 +22,24 @@ const ICONS: Record<string, React.ElementType> = {
   ExportIcon,
 };
 
-const ProjectCard = ({ img, title, content, skills, links }: ProjectsProps) => {
+const ProjectCard = ({
+  img,
+  title,
+  content,
+  status,
+  skills,
+  links,
+}: ProjectsProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <Container>
-      <div className="flex flex-col w-[420px] h-[478px] bg-card-custom border border-accent box-border rounded-xl mt-10 project-card-shadow">
+      <div
+        className={cn(
+          "flex flex-col bg-card-custom border border-accent box-border rounded-xl project-card-shadow group",
+          "lg:w-[420px] lg:h-[478px]",
+        )}
+      >
         {/* Image section */}
         <div className="relative group w-full h-52 rounded-t-xl overflow-hidden">
           {/* Image */}
@@ -34,7 +47,7 @@ const ProjectCard = ({ img, title, content, skills, links }: ProjectsProps) => {
           {/* Gradient Overlay */}
           <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-zinc-950/70 via-zinc-950/30 to-transparent z-10"></div>
           {/* Hover Play Button Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-muted/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:backdrop-blur-xs cursor-pointer">
+          <div className="absolute inset-0 flex items-center justify-center bg-muted/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:backdrop-blur-[2px] cursor-pointer overflow-hidden">
             <button className="flex items-center justify-center size-16 rounded-full bg-white/20 backdrop-blur-sm transition-colors duration-200 group-hover:cursor-pointer hover:bg-white/30">
               <PlayCircleIcon weight="bold" className="size-14" />
             </button>
@@ -45,14 +58,22 @@ const ProjectCard = ({ img, title, content, skills, links }: ProjectsProps) => {
           {/* Title */}
           <div className="flex items-center justify-between mt-4">
             <h3 className="font-semibold text-2xl text-foreground">{title}</h3>
-            <div className="flex items-center justify-between gap-3">
+
+            {status ? (
               <div className="select-none font-medium text-xs w-fit pl-1.5 pr-2.5 py-0.5 gap-0.5 rounded-md flex items-center bg-green-500/15">
                 <span className="animate-pulse">
                   <GoDotFill className="text-green-500" />
                 </span>
                 Live
               </div>
-            </div>
+            ) : (
+              <div className="select-none font-medium text-xs w-fit pl-1.5 pr-2.5 py-0.5 gap-0.5 rounded-md flex items-center bg-amber-500/17">
+                <span className="animate-pulse">
+                  <GoDotFill className="text-amber-500" />
+                </span>
+                Building
+              </div>
+            )}
           </div>
 
           {/* Content */}
