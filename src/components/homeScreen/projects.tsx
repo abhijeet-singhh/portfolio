@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 
 const Projects = () => {
   return (
-    <Container className={cn("my-20 px-6", "lg:px-0")}>
+    <Container className={cn("mt-20 px-6", "lg:px-0")}>
       <SectionHeading subHeading="Featured" heading="Projects" />
       <div
         className={cn(

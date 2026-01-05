@@ -15,6 +15,7 @@ import { AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { CustomTooltip } from "./custom-tooltip";
 import { cn } from "@/lib/utils";
+import { Dialog, DialogPopup, DialogTrigger } from "../ui/dialog";
 
 const ICONS: Record<string, React.ElementType> = {
   GithubLogoIcon,
@@ -29,6 +30,7 @@ const ProjectCard = ({
   status,
   skills,
   links,
+  preview,
 }: ProjectsProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -46,12 +48,30 @@ const ProjectCard = ({
           <img src={img} alt={title} className="w-full h-full object-cover" />
           {/* Gradient Overlay */}
           <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-zinc-950/70 via-zinc-950/30 to-transparent z-10"></div>
-          {/* Hover Play Button Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-muted/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:backdrop-blur-[2px] cursor-pointer overflow-hidden">
-            <button className="flex items-center justify-center size-16 rounded-full bg-white/20 backdrop-blur-sm transition-colors duration-200 group-hover:cursor-pointer hover:bg-white/30">
-              <PlayCircleIcon weight="bold" className="size-14" />
-            </button>
-          </div>
+
+          {preview && (
+            <Dialog>
+              <DialogTrigger>
+                {/* Hover Play Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center bg-muted/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:backdrop-blur-[2px] cursor-pointer overflow-hidden">
+                  <div className="flex items-center justify-center size-16 rounded-full bg-white/20 backdrop-blur-sm transition-colors duration-200 group-hover:cursor-pointer hover:bg-white/30">
+                    <PlayCircleIcon weight="bold" className="size-14" />
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogPopup className="w-full max-w-5xl border-0">
+                <div className="aspect-video w-full">
+                  <video
+                    className="h-full w-full rounded-lg object-cover"
+                    src={preview}
+                    autoPlay
+                    loop
+                    controls
+                  />
+                </div>
+              </DialogPopup>
+            </Dialog>
+          )}
         </div>
 
         <div className="px-4 flex-1">

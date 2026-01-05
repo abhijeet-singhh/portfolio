@@ -46,7 +46,7 @@ export interface ProjectsProps {
   content: string;
   skills: string[];
   links: ProjectLinks[];
-  preview: string;
+  preview?: string;
 }
 
 export const skills: SkillsProps[] = [
@@ -101,7 +101,7 @@ export const projects: ProjectsProps[] = [
       },
       { icon: "ExportIcon", label: "Share", type: "action" },
     ],
-    preview: "#",
+    preview: "/projects/videos/anime-video.mp4",
   },
   {
     id: 2,
@@ -128,6 +128,6 @@ export const projects: ProjectsProps[] = [
       },
       { icon: "ExportIcon", label: "Share", type: "action" },
     ],
-    preview: "#",
+    // preview: "#",
   },
 ];
