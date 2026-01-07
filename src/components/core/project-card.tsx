@@ -27,10 +27,11 @@ const ProjectCard = ({
   img,
   title,
   content,
-  status,
+  isLive,
   skills,
   links,
   preview,
+  className,
 }: ProjectsProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -39,7 +40,9 @@ const ProjectCard = ({
       <div
         className={cn(
           "flex flex-col bg-card-custom border border-accent box-border rounded-xl project-card-shadow group",
-          "lg:w-[420px] lg:h-[478px]",
+          "md:h-[478px]",
+          "lg:w-[420px]",
+          className,
         )}
       >
         {/* Image section */}
@@ -74,12 +77,12 @@ const ProjectCard = ({
           )}
         </div>
 
-        <div className="px-4 flex-1">
+        <div className="px-4 md:px-5 flex-1">
           {/* Title */}
           <div className="flex items-center justify-between mt-4">
             <h3 className="font-semibold text-2xl text-foreground">{title}</h3>
 
-            {status ? (
+            {isLive ? (
               <div className="select-none font-medium text-xs w-fit pl-1.5 pr-2.5 py-0.5 gap-0.5 rounded-md flex items-center bg-green-500/15">
                 <span className="animate-pulse">
                   <GoDotFill className="text-green-500" />

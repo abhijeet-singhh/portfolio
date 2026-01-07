@@ -1,4 +1,4 @@
-import { ElementType } from "react";
+import { IconType } from "react-icons";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { BsFiletypeSql } from "react-icons/bs";
 import { DiJavascript } from "react-icons/di";
@@ -24,14 +24,16 @@ import {
 import { TbBrandFramerMotion, TbBrandTypescript } from "react-icons/tb";
 import { VscTerminalLinux } from "react-icons/vsc";
 
+// Types
+
 export interface SkillsProps {
   id: number;
-  icon: ElementType;
+  icon: IconType;
   text: string;
 }
 
 export interface ProjectLinks {
-  icon: string;
+  icon: "GithubLogoIcon" | "LinkIcon" | "ExportIcon";
   label: string;
   href?: string;
   external?: boolean;
@@ -42,14 +44,28 @@ export interface ProjectsProps {
   id: number;
   img: string;
   title: string;
-  status: boolean;
+  isLive: boolean;
   content: string;
   skills: string[];
   links: ProjectLinks[];
   preview?: string;
+  className?: string;
 }
 
-export const skills: SkillsProps[] = [
+export interface BlogsProps {
+  id: number;
+  img: string;
+  title: string;
+  content: string;
+  tags: string[];
+  date: string;
+  link: string;
+  className?: string;
+}
+
+// Skills Data
+
+export const skills = [
   { id: 1, icon: DiJavascript, text: "JavaScript" },
   { id: 2, icon: TbBrandTypescript, text: "TypeScript" },
   { id: 3, icon: RiReactjsLine, text: "ReactJs" },
@@ -73,14 +89,16 @@ export const skills: SkillsProps[] = [
   { id: 21, icon: SiPostman, text: "Postman" },
   { id: 22, icon: VscTerminalLinux, text: "Linux" },
   { id: 23, icon: SiVercel, text: "Vercel" },
-] as const;
+] satisfies SkillsProps[];
 
-export const projects: ProjectsProps[] = [
+// Projects Data
+
+export const projects = [
   {
     id: 1,
     img: "/projects/flicknest-mockup.png",
     title: "FlickNest",
-    status: true,
+    isLive: true,
     content:
       "A web app for movie and TV show enthusiasts to explore trending, popular, and new releases. Watch trailers, browse casts, discover recommended and similar titles, and search for your favorites.",
     skills: ["React", "TypeScript", "Tailwind", "Redux Toolkit"],
@@ -107,7 +125,7 @@ export const projects: ProjectsProps[] = [
     id: 2,
     img: "/projects/mockryze-mockup.png",
     title: "Mockryze",
-    status: false,
+    isLive: false,
     content:
       "A web platform that delivers role-based, voice-driven AI mock interviews, helping users practice English communication, build confidence, and prepare for real job interviews.",
     skills: ["NextJs", "TypeScript", "Tailwind", "PostgreSQL", "Drizzle"],
@@ -130,4 +148,27 @@ export const projects: ProjectsProps[] = [
     ],
     // preview: "#",
   },
-];
+] satisfies ProjectsProps[];
+
+// Blogs Data
+
+export const blogs = [
+  {
+    id: 1,
+    img: "/blogs/react-130-blog.png",
+    title: "Debug log: Error #130",
+    content: "A dive into error #130, why it happens, and how I fixed it.",
+    tags: ["React", "Debug"],
+    date: "June 27, 2025",
+    link: "https://abhijeet-singhh.github.io/abhijeetxblogs/blogs/blogs.html",
+  },
+  {
+    id: 2,
+    img: "/blogs/react-130-blog.png",
+    title: "Debug log: Error #130",
+    content: "A dive into error #130, why it happens, and how I fixed it.",
+    tags: ["React", "Debug"],
+    date: "June 27, 2025",
+    link: "https://abhijeet-singhh.github.io/abhijeetxblogs/blogs/blogs.html",
+  },
+] satisfies BlogsProps[];

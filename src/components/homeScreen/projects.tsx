@@ -7,13 +7,13 @@ import { Button } from "../ui/button";
 
 const Projects = () => {
   return (
-    <Container className={cn("mt-20 px-6", "lg:px-0")}>
+    <Container className={cn("mt-15 px-6", "md:mt-20", "lg:px-0")}>
       <SectionHeading subHeading="Featured" heading="Projects" />
       <div
         className={cn(
-          "grid grid-cols-1 mt-10",
-          "md:grid-cols-2 gap-5",
-          "gap-11",
+          "grid grid-cols-1 mt-10 gap-10",
+          "md:grid-cols-2",
+          "lg:gap-12",
         )}
       >
         {projects.map((project) => (

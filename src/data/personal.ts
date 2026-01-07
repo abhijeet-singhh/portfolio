@@ -2,7 +2,7 @@ import {
   GithubLogoIcon,
   LinkedinLogoIcon,
   XLogoIcon,
-} from "@phosphor-icons/react";
+} from "@phosphor-icons/react/dist/ssr";
 import { SiBento } from "react-icons/si";
 import { ElementType } from "react";
 
@@ -38,3 +38,11 @@ export const socialLinks: SocialLinkProps[] = [
   { icon: LinkedinLogoIcon, label: "LinkedIn", link: "#" },
   { icon: SiBento, label: "Bento", link: "https://bento.me/abhi-dev" },
 ] as const;
+
+export const aboutMe = `
+I am an undergraduate and a full-stack developer. I spend my time
+working on web apps and learning how to make them work better, both
+on the front end and the back end. I like understanding how things
+are built instead of just using them, and most of what I know comes
+from sitting down and actually working on projects.
+`.trim();
