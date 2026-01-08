@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Caveat, Hanken_Grotesk, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/core/theme-provider";
+import { Navbar } from "@/components/core/navbar";
+import { StarButton } from "@/components/core/star-button";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -46,6 +48,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <StarButton />
+          <Navbar />
           {children}
         </ThemeProvider>
       </body>

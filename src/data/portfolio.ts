@@ -160,7 +160,7 @@ export const blogs = [
     content: "A dive into error #130, why it happens, and how I fixed it.",
     tags: ["React", "Debug"],
     date: "June 27, 2025",
-    link: "https://abhijeet-singhh.github.io/abhijeetxblogs/blogs/blogs.html",
+    link: "https://abhijeet-singhh.github.io/abhijeetxblogs/blogs/react-error-130-not-my-bug.html",
   },
   {
     id: 2,
@@ -169,6 +169,6 @@ export const blogs = [
     content: "A dive into error #130, why it happens, and how I fixed it.",
     tags: ["React", "Debug"],
     date: "June 27, 2025",
-    link: "https://abhijeet-singhh.github.io/abhijeetxblogs/blogs/blogs.html",
+    link: "https://abhijeet-singhh.github.io/abhijeetxblogs/blogs/react-error-130-not-my-bug.html",
   },
 ] satisfies BlogsProps[];

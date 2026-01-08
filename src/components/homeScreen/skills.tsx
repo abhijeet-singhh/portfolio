@@ -18,17 +18,23 @@ const Skills = () => {
         {skills.map((skill) => {
           const Icon = skill.icon;
           return (
-            <Button
-              key={skill.id}
-              variant="secondary"
-              className={cn(
-                "flex items-center border border-border text-xs",
-                "lg:text-sm",
-              )}
+            <a
+              href={`https://www.google.com/search?q=${skill.text}`}
+              target="_blank"
+              rel="noopener noreferer"
             >
-              <Icon aria-hidden className="size-4" />
-              {skill.text}
-            </Button>
+              <Button
+                key={skill.id}
+                variant="secondary"
+                className={cn(
+                  "flex items-center border border-border text-xs hover:border-zinc-500 transition-colors duration-200",
+                  "lg:text-sm",
+                )}
+              >
+                <Icon aria-hidden className="size-4" />
+                {skill.text}
+              </Button>
+            </a>
           );
         })}
       </div>

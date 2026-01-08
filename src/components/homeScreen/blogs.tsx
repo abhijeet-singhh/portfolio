@@ -21,7 +21,13 @@ const Blogs = () => {
         ))}
       </div>
       <div className="flex justify-center items-center mt-10">
-        <Button variant="outline">Show all blogs</Button>{" "}
+        <a
+          href="https://abhijeet-singhh.github.io/abhijeetxblogs/index.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button variant="outline">Show all blogs</Button>
+        </a>
       </div>
     </Container>
   );

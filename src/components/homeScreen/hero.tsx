@@ -5,10 +5,10 @@ import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { CgNotes } from "react-icons/cg";
-import { IoIosSend } from "react-icons/io";
 import { cn } from "@/lib/utils";
 import { personalInfo, SocialLinkProps, socialLinks } from "@/data/personal";
 import { CustomTooltip } from "../core/custom-tooltip";
+import { MdEmail } from "react-icons/md";
 
 const Hero = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -171,17 +171,17 @@ const Hero = () => {
         >
           <button
             className={cn(
-              "flex justify-center items-center gap-2 px-4 py-1 rounded-full cursor-pointer border border-foreground/50 text-foreground/90 hover:bg-foreground/7",
-              "md:px-7 md:py-2",
+              "flex justify-center items-center gap-2 px-3 py-1 rounded-lg cursor-pointer border border-foreground/50 text-foreground/90 hover:bg-foreground/7",
+              "md:px-4 md:py-1.5",
             )}
           >
-            <CgNotes size={14} className="rotate-20" />
+            <CgNotes className={cn("size-3 rotate-20", "md:size-3.5")} />
             Resume
           </button>
           <button
             className={cn(
-              "bg-[#bb6b00]/10 hover:bg-[#bb6b00]/20 text-[#bb6b00] border border-[#bb6b00]/50 px-4 py-1 rounded-full cursor-pointer transition-colors duration-200",
-              "md:px-6 md:py-2",
+              "bg-[#bb6b00]/10 hover:bg-[#bb6b00]/20 text-[#bb6b00] border border-[#bb6b00]/50 px-3 py-1 rounded-lg cursor-pointer transition-colors duration-200",
+              "md:px-4 md:py-1.5",
             )}
           >
             <a
@@ -190,8 +190,8 @@ const Hero = () => {
               rel="noopener noreferrer"
               className="flex justify-center items-center gap-2"
             >
-              <IoIosSend />
-              Contact me
+              <MdEmail className={cn("size-4 mt-0.5", "md:size-4.5")} />
+              Send an email
             </a>
           </button>
         </div>
