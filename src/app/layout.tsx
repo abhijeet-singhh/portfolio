@@ -38,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     // added className dark to make the theme only dark as default
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
         className={`${poppins.variable} ${caveat.variable} ${hankenGrotesk.variable} antialiased`}
       >

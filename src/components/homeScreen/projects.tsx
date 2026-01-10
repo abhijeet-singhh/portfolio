@@ -4,6 +4,7 @@ import { SectionHeading } from "../core/section-heading";
 import { ProjectCard } from "../core/project-card";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const Projects = () => {
   return (
@@ -20,9 +21,9 @@ const Projects = () => {
           <ProjectCard key={project.id} {...project} />
         ))}
       </div>
-      <div className="flex justify-center items-center mt-10">
-        <Button variant="outline">Show all projects</Button>{" "}
-      </div>
+      <Link href="/projects" className="flex justify-center items-center mt-10">
+        <Button variant="outline">Show all projects</Button>
+      </Link>
     </Container>
   );
 };

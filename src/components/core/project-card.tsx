@@ -31,6 +31,7 @@ const ProjectCard = ({
   skills,
   links,
   preview,
+  slug,
   className,
 }: ProjectsProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -39,7 +40,7 @@ const ProjectCard = ({
     <Container>
       <div
         className={cn(
-          "flex flex-col bg-card-custom border border-accent box-border rounded-xl project-card-shadow group",
+          "flex flex-col bg-card-custom border border-accent box-border rounded-xl project-card-shadow group font-hanken",
           "md:h-[478px]",
           "lg:w-[420px]",
           className,
@@ -130,7 +131,7 @@ const ProjectCard = ({
                     className="relative flex flex-col items-center"
                   >
                     {link.type === "link" && link.href ? (
-                      <Link
+                      <a
                         href={link.href}
                         target={link.external ? "_blank" : "_self"}
                         rel={link.external ? "noopener norefferer" : undefined}
@@ -140,13 +141,10 @@ const ProjectCard = ({
                           weight="bold"
                           className="size-5 text-muted-custom"
                         />
-                      </Link>
+                      </a>
                     ) : (
                       // Action buttons (Share)
-                      <button
-                        className="p-2"
-                        // onClick={() => setShowShareModal(true)}
-                      >
+                      <button className="p-2">
                         <Icon
                           weight="bold"
                           className="size-5 cursor-pointer text-muted-custom"
@@ -165,7 +163,7 @@ const ProjectCard = ({
 
             {/* Right section link */}
             <Link
-              href="#"
+              href={`/projects/${slug}`}
               className="text-sm text-muted-custom flex items-center gap-0.5 w-fit ml-1"
             >
               View more

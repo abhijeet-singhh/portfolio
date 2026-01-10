@@ -7,7 +7,7 @@ import { Skills } from "@/components/homeScreen/skills";
 
 export default function HomePage() {
   return (
-    <Container className="bg-background pb-20">
+    <Container className="bg-background pt-10 pb-30 md:py-30">
       <Hero />
       <Skills />
       <Projects />

@@ -22,13 +22,13 @@ export interface SocialLinkProps {
 
 // Personal Info
 
-export const personalInfo: PersonalInfoProps = {
+export const personalInfo = {
   name: "Abhijeet Singh",
   bio: "I build full-stack web applications, working on everything from clean, responsive interfaces to reliable backend systems. I enjoy figuring out how things fit together and turning ideas into simple, polished products people actually enjoy using.",
   image: "/assets/seven-mustard.png",
-} as const;
+} satisfies PersonalInfoProps;
 
-export const socialLinks: SocialLinkProps[] = [
+export const socialLinks = [
   { icon: XLogoIcon, label: "Twitter", link: "https://x.com/abhijeet_tw" },
   {
     icon: GithubLogoIcon,
@@ -37,7 +37,7 @@ export const socialLinks: SocialLinkProps[] = [
   },
   { icon: LinkedinLogoIcon, label: "LinkedIn", link: "#" },
   { icon: SiBento, label: "Bento", link: "https://bento.me/abhi-dev" },
-] as const;
+] satisfies SocialLinkProps[];
 
 export const aboutMe = `
 I am an undergraduate and a full-stack developer. I spend my time

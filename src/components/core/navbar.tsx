@@ -1,22 +1,12 @@
 "use client";
 
-import {
-  FolderSimpleIcon,
-  HouseIcon,
-  NotePencilIcon,
-} from "@phosphor-icons/react/dist/ssr";
 import { Container } from "./Container";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
-import { ReactElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import ThemeToggle from "./theme-toggle";
-
-interface NavItemsProps {
-  label: string;
-  href: string;
-  icon: ReactElement;
-}
+import { navItems } from "@/data/portfolio";
 
 type TooltipProps = {
   label: string;
@@ -35,24 +25,6 @@ const Tooltip = ({ label }: TooltipProps) => {
     </motion.div>
   );
 };
-
-const navItems: NavItemsProps[] = [
-  {
-    label: "Home",
-    href: "/",
-    icon: <HouseIcon className="size-5" />,
-  },
-  {
-    label: "Projects",
-    href: "/projects",
-    icon: <FolderSimpleIcon className="size-5" />,
-  },
-  {
-    label: "Blogs",
-    href: "/blogs",
-    icon: <NotePencilIcon className="size-5" />,
-  },
-];
 
 const Navbar = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -110,28 +82,48 @@ const Navbar = () => {
                 opacity: 1,
               }
         }
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.2 }}
         className={cn(
           "fixed flex items-center gap-3 px-4 py-1 rounded-2xl border-2 border-border/40 bg-background/15 backdrop-blur-md z-10",
           "bottom-4 left-1/2 -translate-x-1/2",
           "md:top-4 md:bottom-auto",
         )}
       >
-        {navItems.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center"
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-          >
-            <Link href={item.href} className="px-2 py-1">
-              <span>{item.icon}</span>
-            </Link>
-            <AnimatePresence>
-              {hoveredIndex === index && <Tooltip label={item.label} />}
-            </AnimatePresence>
-          </div>
-        ))}
+        {navItems.map((item, index) => {
+          const Icon = item.icon;
+          // Check if link is external
+          const isExternal = item.href.startsWith("http");
+          return (
+            <div
+              key={index}
+              className="flex flex-col items-center"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              {isExternal ? (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferer"
+                  className="px-2 py-1"
+                >
+                  <span>
+                    <Icon className="size-5" />
+                  </span>
+                </a>
+              ) : (
+                <Link href={item.href} className="px-2 py-1">
+                  <span>
+                    <Icon className="size-5" />
+                  </span>
+                </Link>
+              )}
+              <AnimatePresence>
+                {hoveredIndex === index && <Tooltip label={item.label} />}
+              </AnimatePresence>
+            </div>
+          );
+        })}
         <div className="h-8 border border-border"></div>
         <ThemeToggle />
       </motion.div>

@@ -16,8 +16,7 @@ const Hero = () => {
   return (
     <Container
       className={cn(
-        "flex flex-col justify-center pt-10 px-6 w-full",
-        "md:pt-30",
+        "flex flex-col justify-center px-6 w-full",
         "lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-border lg:pb-10 lg:px-0",
       )}
     >

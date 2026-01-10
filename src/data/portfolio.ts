@@ -1,3 +1,4 @@
+import { ElementType } from "react";
 import { IconType } from "react-icons";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { BsFiletypeSql } from "react-icons/bs";
@@ -23,8 +24,19 @@ import {
 } from "react-icons/si";
 import { TbBrandFramerMotion, TbBrandTypescript } from "react-icons/tb";
 import { VscTerminalLinux } from "react-icons/vsc";
+import {
+  FolderSimpleIcon,
+  HouseIcon,
+  NotePencilIcon,
+} from "@phosphor-icons/react/dist/ssr";
 
 // Types
+
+interface NavItemsProps {
+  label: string;
+  href: string;
+  icon: ElementType;
+}
 
 export interface SkillsProps {
   id: number;
@@ -49,6 +61,7 @@ export interface ProjectsProps {
   skills: string[];
   links: ProjectLinks[];
   preview?: string;
+  slug?: string;
   className?: string;
 }
 
@@ -62,6 +75,26 @@ export interface BlogsProps {
   link: string;
   className?: string;
 }
+
+// NavItems
+
+export const navItems: NavItemsProps[] = [
+  {
+    label: "Home",
+    href: "/",
+    icon: HouseIcon,
+  },
+  {
+    label: "Projects",
+    href: "/projects",
+    icon: FolderSimpleIcon,
+  },
+  {
+    label: "Blogs",
+    href: "https://abhijeet-singhh.github.io/abhijeetxblogs/",
+    icon: NotePencilIcon,
+  },
+];
 
 // Skills Data
 
@@ -112,7 +145,7 @@ export const projects = [
       },
       {
         icon: "LinkIcon",
-        label: "Live",
+        label: "Website",
         href: "https://flicknestapp.netlify.app",
         external: true,
         type: "link",
@@ -120,6 +153,7 @@ export const projects = [
       { icon: "ExportIcon", label: "Share", type: "action" },
     ],
     preview: "/projects/videos/anime-video.mp4",
+    slug: "flicknest",
   },
   {
     id: 2,
@@ -139,7 +173,7 @@ export const projects = [
       },
       {
         icon: "LinkIcon",
-        label: "Live",
+        label: "Website",
         href: "#",
         external: true,
         type: "link",
@@ -147,6 +181,7 @@ export const projects = [
       { icon: "ExportIcon", label: "Share", type: "action" },
     ],
     // preview: "#",
+    slug: "mockryze",
   },
 ] satisfies ProjectsProps[];
 
