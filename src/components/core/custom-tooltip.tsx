@@ -14,7 +14,7 @@ const CustomTooltip = ({ label, className }: TooltipProps) => {
       exit={{ opacity: 0, y: 15 }}
       transition={{ duration: 0.25 }}
       className={cn(
-        "absolute top-[-25px] bg-muted-foreground text-white text-[12px] px-2 py-0.5 rounded-md whitespace-nowrap z-10",
+        "absolute top-[-25px] pointer-events-none bg-muted-foreground text-white text-[12px] px-2 py-0.5 rounded-md whitespace-nowrap z-10",
         className,
       )}
     >

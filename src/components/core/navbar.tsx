@@ -19,7 +19,7 @@ const Tooltip = ({ label }: TooltipProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.25 }}
-      className="absolute bottom-[-32px] bg-tooltip text-foreground text-[12px] px-2 py-0.5 rounded-md whitespace-nowrap z-10"
+      className="absolute bottom-[-32px] pointer-events-none bg-tooltip text-foreground text-[12px] px-2 py-0.5 rounded-md whitespace-nowrap z-10"
     >
       {label}
     </motion.div>
@@ -97,8 +97,10 @@ const Navbar = () => {
             <div
               key={index}
               className="flex flex-col items-center"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              onMouseEnter={
+                isDesktop ? () => setHoveredIndex(index) : undefined
+              }
+              onMouseLeave={isDesktop ? () => setHoveredIndex(null) : undefined}
             >
               {isExternal ? (
                 <a
@@ -119,7 +121,9 @@ const Navbar = () => {
                 </Link>
               )}
               <AnimatePresence>
-                {hoveredIndex === index && <Tooltip label={item.label} />}
+                {isDesktop && hoveredIndex === index && (
+                  <Tooltip label={item.label} />
+                )}
               </AnimatePresence>
             </div>
           );

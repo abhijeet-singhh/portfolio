@@ -29,6 +29,9 @@ const hankenGrotesk = Hanken_Grotesk({
 export const metadata: Metadata = {
   title: "Abhijeet Singh",
   description: "My Portfolio",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000", // Defines the base URL for resolving metadata image and link URLs
+  ),
 };
 
 export default function RootLayout({

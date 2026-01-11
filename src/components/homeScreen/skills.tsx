@@ -19,12 +19,12 @@ const Skills = () => {
           const Icon = skill.icon;
           return (
             <a
+              key={skill.id}
               href={`https://www.google.com/search?q=${skill.text}`}
               target="_blank"
               rel="noopener noreferer"
             >
               <Button
-                key={skill.id}
                 variant="secondary"
                 className={cn(
                   "flex items-center border border-border text-xs hover:border-zinc-500 transition-colors duration-200",
