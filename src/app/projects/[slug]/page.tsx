@@ -1,4 +1,5 @@
 import { Container } from "@/components/core/Container";
+import { HoverGroup } from "@/components/core/hover-group";
 import { Button } from "@/components/ui/button";
 import { projects } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
@@ -19,35 +20,6 @@ export function generateStaticParams() {
     slug: project.slug,
   }));
 }
-
-// 2️⃣ Metadata (SEO)
-// export async function generateMetadata({
-//   params,
-// }: {
-//   params: { slug: string };
-// }): Promise<Metadata> {
-//   const project = projects.find((p) => p.slug === params.slug);
-//
-//   if (!project) {
-//     return {
-//       title: "Project not found",
-//     };
-//   }
-//
-//   return {
-//     title: `${project.title} | Projects`,
-//     description: project.content,
-//     openGraph: {
-//       title: project.title,
-//       description: project.content,
-//       images: [
-//         {
-//           url: project.img || "/assets/seven.png",
-//         },
-//       ],
-//     },
-//   };
-// }
 
 export async function generateMetadata({
   params,
@@ -125,36 +97,42 @@ export default async function ProjectPage({
 
       {/* Links */}
       <div className="flex w-full h-fit border-b border-dashed border-border overflow-hidden">
-        {links?.map((link, index) => {
-          const Icon = ICONS[link.icon];
+        <HoverGroup
+          className="w-full border-b border-dashed border-border"
+          itemClassName="flex-1"
+          hoverClassName="bg-muted"
+        >
+          {links?.map((link, index) => {
+            const Icon = ICONS[link.icon];
 
-          return link.type === "link" && link.href ? (
-            <a
-              key={index}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                "flex items-center justify-center gap-2 flex-1 p-3 hover:bg-muted transition-colors border-r border-dashed border-border",
-                "md:p-4",
-              )}
-            >
-              <Icon weight="bold" className="size-4 text-muted-custom" />
-              {link.label}
-            </a>
-          ) : (
-            <button
-              key={index}
-              className={cn(
-                "flex items-center justify-center gap-2 flex-1 p-3 cursor-pointer hover:bg-muted transition-colors",
-                "md:p-4",
-              )}
-            >
-              <Icon weight="bold" className="size-4 text-muted-custom" />
-              {link.label}
-            </button>
-          );
-        })}
+            return link.type === "link" && link.href ? (
+              <a
+                key={index}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "flex items-center justify-center gap-2 flex-1 p-3 border-r border-dashed border-border",
+                  "md:p-4",
+                )}
+              >
+                <Icon weight="bold" className="size-4 text-muted-custom" />
+                {link.label}
+              </a>
+            ) : (
+              <button
+                key={index}
+                className={cn(
+                  "flex items-center justify-center gap-2 flex-1 p-3 cursor-pointer",
+                  "md:p-4",
+                )}
+              >
+                <Icon weight="bold" className="size-4 text-muted-custom" />
+                {link.label}
+              </button>
+            );
+          })}
+        </HoverGroup>
       </div>
 
       {/* Description */}
