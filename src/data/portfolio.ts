@@ -58,6 +58,7 @@ export interface ProjectsProps {
   title: string;
   isLive: boolean;
   content: string;
+  detailedContent?: string;
   skills: string[];
   links: ProjectLinks[];
   preview?: string;
@@ -74,6 +75,12 @@ export interface BlogsProps {
   date: string;
   link: string;
   className?: string;
+}
+
+export interface QuoteProps {
+  id: number;
+  quote: string;
+  author: string;
 }
 
 // NavItems
@@ -134,6 +141,11 @@ export const projects = [
     isLive: true,
     content:
       "A web app for movie and TV show enthusiasts to explore trending, popular, and new releases. Watch trailers, browse casts, discover recommended and similar titles, and search for your favorites.",
+    detailedContent: `
+	<p>A visually engaging web app designed for movie and TV show lovers. Explore trending, popular, and newly released titles through an intuitive, modern interface that makes discovery effortless and enjoyable.</p>
+	<br>
+	<p>Each title opens into a richer experience - watch trailers, explore cast details, and discover similar and recommended content tailored to your taste. Smooth animations and subtle transitions add a cinematic flow, turning simple browsing into an immersive journey through film and television.</p>
+	`,
     skills: ["React", "TypeScript", "Tailwind", "Redux Toolkit"],
     links: [
       {
@@ -162,6 +174,7 @@ export const projects = [
     isLive: false,
     content:
       "A web platform that delivers role-based, voice-driven AI mock interviews, helping users practice English communication, build confidence, and prepare for real job interviews.",
+    detailedContent: "",
     skills: ["NextJs", "TypeScript", "Tailwind", "PostgreSQL", "Drizzle"],
     links: [
       {
@@ -207,3 +220,37 @@ export const blogs = [
     link: "https://abhijeet-singhh.github.io/abhijeetxblogs/blogs/react-error-130-not-my-bug.html",
   },
 ] satisfies BlogsProps[];
+
+// Quote Data
+
+export const quotes = [
+  {
+    id: 1,
+    quote:
+      '"Humans are not born equal. Some are born faster, some smarter, some weaker. But everyone is born with the right to change."',
+    author: "IZAYA ORIHARA",
+  },
+  {
+    id: 2,
+    quote:
+      '"People don’t really want to be understood. They just want to be accepted."',
+    author: "HACHIMAN HIKIGAYA",
+  },
+  {
+    id: 3,
+    quote:
+      '"The worst kind of loneliness isn’t being alone. It’s being forgotten."',
+    author: "SHOYA ISHIDA",
+  },
+  {
+    id: 4,
+    quote: '"Kindness isn’t free. Someone always ends up paying for it."',
+    author: "KYOKO KIRIGIRI",
+  },
+  {
+    id: 5,
+    quote:
+      '"People can’t change unless they’re forced to confront what they hate about themselves."',
+    author: "ASKELADD",
+  },
+] satisfies QuoteProps[];

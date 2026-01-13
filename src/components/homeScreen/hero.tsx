@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { personalInfo, SocialLinkProps, socialLinks } from "@/data/personal";
 import { CustomTooltip } from "../core/custom-tooltip";
 import { MdEmail } from "react-icons/md";
+import { XLogoIcon } from "@phosphor-icons/react";
 
 const Hero = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -170,12 +171,21 @@ const Hero = () => {
         >
           <button
             className={cn(
-              "flex justify-center items-center gap-2 px-3 py-1 rounded-lg cursor-pointer border border-foreground/50 text-foreground/90 hover:bg-foreground/7",
+              "bg-secondary hover:bg-foreground/12 border border-border text-foreground/90 px-3 py-1 rounded-lg cursor-pointer",
               "md:px-4 md:py-1.5",
             )}
           >
-            <CgNotes className={cn("size-3 rotate-20", "md:size-3.5")} />
-            Resume
+            <a
+              href="https://x.com/abhijeet_tw"
+              target="_bland"
+              rel="noopener noreferer"
+              className="flex justify-center items-center gap-1"
+            >
+              {/* <CgNotes className={cn("size-3 rotate-20", "md:size-3.5")} /> */}
+              {/* Resume */}
+              <XLogoIcon weight="bold" className={cn("size-4")} />
+              Twitter
+            </a>
           </button>
           <button
             className={cn(
@@ -184,9 +194,7 @@ const Hero = () => {
             )}
           >
             <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:abhijeetxdev@gmail.com"
               className="flex justify-center items-center gap-2"
             >
               <MdEmail className={cn("size-4 mt-0.5", "md:size-4.5")} />

@@ -67,7 +67,16 @@ export default async function ProjectPage({
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) return notFound();
-  const { img, title, isLive, content, skills, links, preview } = project;
+  const {
+    img,
+    title,
+    isLive,
+    content,
+    detailedContent,
+    skills,
+    links,
+    preview,
+  } = project;
 
   return (
     <Container
@@ -112,8 +121,8 @@ export default async function ProjectPage({
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  "flex items-center justify-center gap-2 flex-1 p-3 border-r border-dashed border-border",
-                  "md:p-4",
+                  "flex items-center justify-center gap-1 flex-1 text-sm p-3 border-r border-dashed border-border",
+                  "md:p-4 md:gap-2 md:text-[16px]",
                 )}
               >
                 <Icon weight="bold" className="size-4 text-muted-custom" />
@@ -123,8 +132,8 @@ export default async function ProjectPage({
               <button
                 key={index}
                 className={cn(
-                  "flex items-center justify-center gap-2 flex-1 p-3 cursor-pointer",
-                  "md:p-4",
+                  "flex items-center justify-center gap-1 flex-1 text-sm mx-auto p-3 cursor-pointer",
+                  "md:p-4 md:gap-2 md:text-[16px]",
                 )}
               >
                 <Icon weight="bold" className="size-4 text-muted-custom" />
@@ -157,8 +166,12 @@ export default async function ProjectPage({
           )}
         </div>
         {/* Content */}
-        {/* TODO: add detailed content here */}
-        <div className="mt-5 text-muted-custom">{content}</div>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: detailedContent || content,
+          }}
+          className="mt-5 text-muted-custom text-[16px] md:tracking-wide"
+        />
 
         {/* Technologies */}
         <div className={cn("flex flex-col gap-5 mt-7", "md:mt-10")}>

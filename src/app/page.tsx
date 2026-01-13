@@ -3,6 +3,7 @@ import { AboutMe } from "@/components/homeScreen/about-me";
 import { Blogs } from "@/components/homeScreen/blogs";
 import { Hero } from "@/components/homeScreen/hero";
 import { Projects } from "@/components/homeScreen/projects";
+import { Quotes } from "@/components/homeScreen/quotes";
 import { Skills } from "@/components/homeScreen/skills";
 
 export default function HomePage() {
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Projects />
       <AboutMe />
       <Blogs />
+      <Quotes />
     </Container>
   );
 }

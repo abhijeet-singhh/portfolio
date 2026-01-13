@@ -3,7 +3,7 @@ import {
   LinkedinLogoIcon,
   XLogoIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import { SiBento } from "react-icons/si";
+import { SiBento, SiLeetcode } from "react-icons/si";
 import { ElementType } from "react";
 
 // Types
@@ -29,7 +29,7 @@ export const personalInfo = {
 } satisfies PersonalInfoProps;
 
 export const socialLinks = [
-  { icon: XLogoIcon, label: "Twitter", link: "https://x.com/abhijeet_tw" },
+  // { icon: XLogoIcon, label: "Twitter", link: "https://x.com/abhijeet_tw" },
   {
     icon: GithubLogoIcon,
     label: "GitHub",
@@ -37,6 +37,7 @@ export const socialLinks = [
   },
   { icon: LinkedinLogoIcon, label: "LinkedIn", link: "#" },
   { icon: SiBento, label: "Bento", link: "https://bento.me/abhi-dev" },
+  { icon: SiLeetcode, label: "Leetcoee", link: "#" },
 ] satisfies SocialLinkProps[];
 
 export const aboutMe = `

@@ -15,7 +15,7 @@ const AboutMe = () => {
         />
         <div className="flex flex-col gap-5">
           <div className="md:hidden">{/* <WakaTime /> */}</div>
-          <div className="text-muted-custom text-[17px] tracking-wide">
+          <div className="text-muted-custom text-[17px] md:tracking-wide">
             {aboutMe}
           </div>
           <div className="hidden md:block">{/* <WakaTime /> */}</div>

@@ -40,14 +40,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // added className dark to make the theme only dark as default
     <html lang="en">
       <body
         className={`${poppins.variable} ${caveat.variable} ${hankenGrotesk.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
