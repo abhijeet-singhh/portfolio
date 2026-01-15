@@ -37,7 +37,7 @@ export const socialLinks = [
   },
   { icon: LinkedinLogoIcon, label: "LinkedIn", link: "#" },
   { icon: SiBento, label: "Bento", link: "https://bento.me/abhi-dev" },
-  { icon: SiLeetcode, label: "Leetcoee", link: "#" },
+  { icon: SiLeetcode, label: "Leetcode", link: "#" },
 ] satisfies SocialLinkProps[];
 
 export const aboutMe = `

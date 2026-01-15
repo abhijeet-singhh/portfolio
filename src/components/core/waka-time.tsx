@@ -1,6 +1,7 @@
 import { getWakaStatus } from "@/lib/wakatime";
 import { GoDotFill } from "react-icons/go";
 import { RefreshHandler } from "./refresh-handler";
+import Image from "next/image";
 
 export const revalidate = 300;
 
@@ -16,7 +17,8 @@ const WakaTime = async () => {
             <GoDotFill className="size-4 mt-0.5" />
             <span>Offline</span>
             <span className="flex items-center gap-0.5 ml-1">
-              <img
+              <Image
+                fill
                 src="/icons/neovim-logo.svg"
                 alt="neovim"
                 className="size-4"
@@ -45,7 +47,8 @@ const WakaTime = async () => {
               <GoDotFill className="size-4 mt-0.5 animate-pulse text-green-500" />
               <span>Online</span>
               <span className="flex items-center gap-0.5 ml-1">
-                <img
+                <Image
+                  fill
                   src="/icons/neovim-logo.svg"
                   alt="neovim"
                   className="size-4"
@@ -69,7 +72,8 @@ const WakaTime = async () => {
               <GoDotFill className="size-4 mt-0.5" />
               <span>Offline</span>
               <span className="flex items-center gap-0.5 ml-1">
-                <img
+                <Image
+                  fill
                   src="/icons/neovim-logo.svg"
                   alt="neovim"
                   className="size-4"

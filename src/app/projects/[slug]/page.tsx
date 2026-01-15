@@ -99,6 +99,7 @@ export default async function ProjectPage({
         ) : (
           <img
             src={img}
+            alt="project-image"
             className="object-cover object-center w-full h-full border border-border"
           />
         )}
@@ -182,7 +183,7 @@ export default async function ProjectPage({
                 key={index}
                 href={`https://www.google.com/search?q=${skill}`}
                 target="_blank"
-                rel="noopener noreferer"
+                rel="noopener noreferrer"
               >
                 <Button
                   variant="secondary"

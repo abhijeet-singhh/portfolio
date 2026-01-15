@@ -106,7 +106,7 @@ const Navbar = () => {
                 <a
                   href={item.href}
                   target="_blank"
-                  rel="noopener noreferer"
+                  rel="noopener noreferrer"
                   className="px-2 py-1"
                 >
                   <span>

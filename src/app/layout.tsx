@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/core/theme-provider";
 import { Navbar } from "@/components/core/navbar";
 import { StarButton } from "@/components/core/star-button";
+import { Footer } from "@/components/core/footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ const hankenGrotesk = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Abhijeet Singh",
+  title: "Abhijeet - A Full Stack web developer",
   description: "My Portfolio",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000", // Defines the base URL for resolving metadata image and link URLs
@@ -53,6 +54,7 @@ export default function RootLayout({
           <StarButton />
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

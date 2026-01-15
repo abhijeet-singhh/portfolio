@@ -11,6 +11,7 @@ const AboutMe = () => {
       <div className="flex flex-col md:flex-row md:items-center gap-5 mt-5 md:mt-10">
         <img
           src="/assets/about-me.jpeg"
+          alt="aboutMe image"
           className="rounded-md w-50 h-50 object-cover object-center border border-border"
         />
         <div className="flex flex-col gap-5">
