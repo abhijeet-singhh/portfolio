@@ -9,7 +9,7 @@ import { AnimatedWrapper } from "@/lib/animated-wrapper";
 const Blogs = () => {
   return (
     <AnimatedWrapper>
-      <Container className={cn("mt-20 px-6", "lg:px-0")}>
+      <Container className={cn("px-6", "lg:px-0")}>
         <SectionHeading subHeading="Featured" heading="Blogs" />
         <AnimatedWrapper delay={0.15}>
           <div

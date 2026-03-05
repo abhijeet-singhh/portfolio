@@ -1,46 +1,69 @@
 "use client";
 import { quotes } from "@/data/portfolio";
 import { Container } from "../core/Container";
-import { FaQuoteLeft } from "react-icons/fa";
+import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
-const Quotes = () => {
-  const [quote, setQuote] = useState(quotes[0]);
+export const Quotes = () => {
+  const [quoteIdx, setQuoteIdx] = useState(0);
 
   useEffect(() => {
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    setQuote(randomQuote);
+    setQuoteIdx(Math.floor(Math.random() * quotes.length));
+
+    const interval = setInterval(() => {
+      setQuoteIdx((prev) => (prev + 1) % quotes.length);
+    }, 20000);
+
+    return () => clearInterval(interval);
   }, []);
 
+  const quote = quotes[quoteIdx];
+
   return (
-    <Container className={cn("mt-20 px-6", "lg:px-0")}>
-      <div className="flex flex-col items-center rounded-xl border border-dashed border-border p-5">
-        <div>
-          <FaQuoteLeft className="size-12 text-zinc-200 dark:text-[#1f1f1f]" />
+    <Container className={cn("px-4 sm:px-6 lg:px-0 lg:mt-10 relative z-10")}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.6 }}
+        className="relative max-w-4xl mx-auto"
+      >
+        <div className="relative glass-card rounded-3xl border-border/60 p-6 sm:p-10 md:p-12 overflow-hidden text-center flex flex-col items-center justify-center min-h-[240px] border border-border">
+          {/* Decorative gradients (slightly smaller) */}
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none translate-y-1/2 -translate-x-1/2"></div>
+
+          <FaQuoteLeft className="absolute top-6 left-6 sm:top-8 sm:left-8 size-8 sm:size-10 text-foreground/5 dark:text-foreground/10" />
+          <FaQuoteRight className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 size-8 sm:size-10 text-foreground/5 dark:text-foreground/10" />
+
+          <div className="relative z-10 w-full max-w-xl mx-auto">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={quoteIdx}
+                initial={{ opacity: 0, scale: 0.96, filter: "blur(8px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 1.04, filter: "blur(8px)" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="flex flex-col items-center gap-6"
+              >
+                <p className="text-lg sm:text-xl md:text-2xl text-foreground font-medium italic leading-relaxed tracking-wide font-serif">
+                  "{quote?.quote}"
+                </p>
+
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <div className="h-px w-8 bg-border/80"></div>
+                  <span className="font-semibold text-xs sm:text-sm uppercase tracking-widest text-primary/80">
+                    {quote?.author}
+                  </span>
+                  <div className="h-px w-8 bg-border/80"></div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
-        <div className="mt-7">
-          {quote && (
-            <div className="flex flex-col items-center gap-7">
-              <p className="text-center text-foreground/95 text-2xl font-semibold italic">
-                {quote.quote}
-              </p>
-              <div className="text-muted-foreground">
-                <span className="font-bold text-zinc-300 dark:text-zinc-700">
-                  ―――
-                </span>
-                <span className="mx-3 font-bold text-sm text-zinc-400 dark:text-zinc-500">
-                  {quote.author}
-                </span>
-                <span className="font-bold text-zinc-300 dark:text-zinc-700">
-                  ―――
-                </span>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };
-export { Quotes };

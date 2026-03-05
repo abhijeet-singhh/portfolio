@@ -10,7 +10,7 @@ import { AnimatedWrapper } from "@/lib/animated-wrapper";
 const Projects = () => {
   return (
     <AnimatedWrapper>
-      <Container className={cn("mt-15 px-6", "md:mt-20", "lg:px-0")}>
+      <Container className={cn("mt-15 px-6", "lg:px-0")}>
         <SectionHeading subHeading="Featured" heading="Projects" />
         <div
           className={cn(

@@ -9,11 +9,7 @@ const Skills = () => {
   return (
     <AnimatedWrapper>
       <Container
-        className={cn(
-          "flex flex-col justify-center mt-7 px-6",
-          "md:mt-10",
-          "lg:px-0 lg:mt-20",
-        )}
+        className={cn("flex flex-col justify-center mt-7 px-6", "lg:px-0")}
       >
         <SectionHeading subHeading="Technologies &" heading="Skills" />
         <AnimatedWrapper delay={0.15}>

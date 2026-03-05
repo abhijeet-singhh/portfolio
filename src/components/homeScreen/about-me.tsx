@@ -6,7 +6,7 @@ import { aboutMe } from "@/data/personal";
 
 const AboutMe = () => {
   return (
-    <Container className={cn("mt-20 px-6", "lg:px-0")}>
+    <Container className={cn("px-6", "lg:px-0")}>
       <SectionHeading subHeading="About" heading="Me" />
       <div className="flex flex-col md:flex-row md:items-center gap-5 mt-5 md:mt-10">
         <img
