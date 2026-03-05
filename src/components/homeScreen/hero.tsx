@@ -1,99 +1,152 @@
 "use client";
-
-import { Container } from "../core/Container";
-import { useState } from "react";
-import { AnimatePresence } from "motion/react";
-import Link from "next/link";
-// import { CgNotes } from "react-icons/cg";
 import { cn } from "@/lib/utils";
-import { personalInfo, SocialLinkProps, socialLinks } from "@/data/personal";
-import { CustomTooltip } from "../core/custom-tooltip";
+import { Container } from "../core/Container";
+import { AnimatePresence, motion } from "motion/react";
+import { personalInfo, socialLinks } from "@/data/personal";
+import Image from "next/image";
+import Link from "next/link";
 import { MdEmail } from "react-icons/md";
-import { XLogoIcon } from "@phosphor-icons/react";
+import { useState } from "react";
+import { CustomTooltip } from "../core/custom-tooltip";
 import { AnimatedWrapper } from "@/lib/animated-wrapper";
 
 const Hero = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isBioOpen, setIsBioOpen] = useState(false);
+  const shortBio = personalInfo.bio.slice(0, 90) + "...";
 
   return (
     <AnimatedWrapper>
-      <Container
-        className={cn(
-          "flex flex-col justify-center px-6 w-full",
-          "lg:flex lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-border lg:pb-10 lg:px-0",
-        )}
-      >
-        {/* Card */}
-        <div
-          className={cn(
-            "h-fit relative overflow-hidden",
-            "flex items-center gap-3",
-            "lg:flex lg:flex-col lg:items-center lg:w-[310px] lg:py-[20px] lg:bg-background-card-custom lg:rounded-2xl",
-          )}
-        >
-          <div
+      <Container className="relative pt-12 pb-20 flex flex-col items-center">
+        <div className="relative w-full flex flex-col items-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             className={cn(
-              "w-fit h-36 overflow-hidden rounded-2xl border",
-              "md:h-40",
-              "lg:h-fit",
+              "absolute top-0 text-[15vw] font-black text-foreground/5 leading-none uppercase select-none z-0",
+              "md:text-[120px]",
             )}
           >
-            <img
-              src={personalInfo.image}
-              alt="ProfileImage"
-              className={cn("w-36", "md:w-40", "lg:w-64")}
-            />
-          </div>
-          <div className={cn("flex flex-col gap-3", "lg:items-center")}>
-            <div
+            FULLSTACK
+          </motion.h2>
+
+          <div className="relative z-10 mt-6 group">
+            {/* image background gradient */}
+            <div className="absolute -inset-1 bg-linear-to-b from-[#bb6b00] to-transparent rounded-[3rem] blur-xl opacity-30 group-hover:opacity-40 transition-opacity -rotate-6" />
+            {/* image */}
+            <motion.div
               className={cn(
-                "font-caveat font-semibold text-[26px] text-foreground",
-                "md:text-[36px]",
-                "lg:text-gray-800",
+                "relative w-56 h-72 overflow-hidden rounded-[3rem] border-[6px] border-background shadow-2xl -rotate-6",
+                "md:w-64 md:h-80",
+              )}
+            >
+              <Image
+                fill
+                src={personalInfo.image}
+                alt={personalInfo.name}
+                className={cn(
+                  "w-full h-full object-cover grayscale brightness-110 hover:grayscale-0 transition-all duration-500",
+                )}
+              />
+            </motion.div>
+
+            {/* floating bio tag */}
+            <motion.div
+              layout
+              onClick={() => setIsBioOpen(!isBioOpen)}
+              initial={{ x: 20, opacity: 0 }}
+              animate={{
+                x: 0,
+                opacity: 1,
+                width: isBioOpen ? 280 : 180,
+                height: "auto",
+                rotate: isBioOpen ? 4 : 0,
+              }}
+              transition={{
+                layout: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                  mass: 1,
+                },
+                type: "spring",
+                stiffness: 300,
+                damping: 20,
+              }}
+              className={cn(
+                "absolute left-[43%] bottom-12 hidden w-45 bg-background/80 backdrop-blur-xl border border-border p-4 rounded-2xl shadow-xl cursor-grab",
+                "md:block overflow-hidden origin-left",
+                isBioOpen ? "z-50" : "z-10",
+              )}
+            >
+              <div className="relative">
+                <motion.p
+                  layout="position"
+                  className="text-[11px] font-bold text-[#bb6b00] uppercase tracking-widest mb-1"
+                >
+                  About Me
+                </motion.p>
+                <motion.p
+                  layout="position"
+                  className={cn(
+                    "text-xs leading-relaxed text-muted-foreground line-clamp-3",
+                    isBioOpen ? "line-clamp-none" : "line-clamp-3",
+                  )}
+                >
+                  {isBioOpen ? personalInfo.bio : shortBio}
+                </motion.p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* main title */}
+          <div className="relative z-20 -mt-10 text-center">
+            <h1
+              className={cn(
+                "text-6xl font-black tracking-tighter leading-none text-foreground uppercase drop-shadow-2xl",
+                "md:text-8xl",
+              )}
+            >
+              DEVELOPER
+            </h1>
+            <p
+              className={cn(
+                "font-caveat text-3xl text-[#bb6b00] mt-2",
+                "md:text-4xl",
               )}
             >
               {personalInfo.name}
-            </div>
-            <div
+            </p>
+          </div>
+        </div>
+
+        {/* descriptioin: mobile and tablet only */}
+        <div className={cn("mt-8 max-w-lg text-center", "md:hidden")}>
+          <p className="text-muted-foreground font-hanken text-lg px-4">
+            {personalInfo.bio}
+          </p>
+        </div>
+
+        {/* actioins and socials */}
+        <div className="mt-12 w-full max-w-md flex flex-col gap-6">
+          <div
+            className={cn(
+              "flex flex-col items-center justify-center gap-4",
+              "sm:flex-row",
+            )}
+          >
+            <Link
+              href="mailto:abhijeetxdev@gmail.com"
               className={cn(
-                "flex items-center gap-2 border border-green-500 rounded-md px-2 py-1 w-fit",
-                "md:px-3 md:py-2",
-                "lg:border-green-600",
+                "w-52 flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 rounded-2xl font-bold transition-all hover:bg-[#bb6b00] hover:text-white",
+                "sm:w-auto",
               )}
             >
-              <span
-                className={cn(
-                  "w-2 h-2 rounded-full bg-green-500 animate-pulse",
-                  "md:w-3 md:h-3",
-                  "lg:bg-green-600",
-                )}
-              ></span>
-              <span
-                className={cn(
-                  "md:hidden text-green-500 text-sm font-semibold leading-none mb-[2px]",
-                  "lg:text-green-600",
-                )}
-              >
-                Available
-              </span>
-              <span
-                className={cn(
-                  "hidden md:block text-green-500 text-sm font-semibold leading-none mb-[2px]",
-                  "lg:text-green-600",
-                )}
-              >
-                Available for remote roles
-              </span>
-            </div>
-            {/* Social Icons */}
-            <div
-              className={cn(
-                "flex items-center justify-center text-[#bb6b00] gap-1 -ml-2",
-                "md:gap-3",
-                "lg:ml-0 lg:mt-6",
-              )}
-            >
-              {socialLinks.map((item: SocialLinkProps, index: number) => {
+              Contact Me <MdEmail className="size-5" />
+            </Link>
+
+            <div className="flex items-center gap-2 bg-secondary/50 p-2 rounded-2xl border border-border">
+              {socialLinks.map((item, index) => {
                 const Icon = item.icon;
                 return (
                   <div
@@ -104,16 +157,10 @@ const Hero = () => {
                   >
                     <Link
                       href={item.link}
-                      target={item.link.startsWith("http") ? "_blank" : "_self"}
-                      rel={
-                        item.link.startsWith("http")
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                      className="hover:bg-background-alt p-2 rounded-lg cursor-pointer transition-colors duration-300"
-                      aria-label={item.label}
+                      target="_blank"
+                      className="p-2.5 flex rounded-xl hover:bg-background hover:text-[#bb6b00] transition-all"
                     >
-                      <Icon weight="bold" className="size-6" />
+                      <Icon weight="bold" className="size-5" />
                     </Link>
                     <AnimatePresence>
                       {hoveredIndex === index && (
@@ -125,88 +172,31 @@ const Hero = () => {
               })}
             </div>
           </div>
+
+          {/* Availability Indicator */}
+          <div className="flex justify-center items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+              Currently accepting remote roles
+            </span>
+          </div>
         </div>
 
-        <AnimatedWrapper delay={0.15}>
-          {/* Text Area */}
-          <div className="flex flex-col -space-y-4 pb-8">
-            <div
-              className={cn(
-                "flex flex-row gap-3 mt-5",
-                "md:gap-6",
-                "lg:gap-0 lg:flex-col lg:justify-center lg:-space-y-12",
-              )}
-            >
-              <span
-                className={cn(
-                  "font-bold text-[30px] text-shadow-muted-foreground tracking-tighter",
-                  "md:text-[60px]",
-                  "lg:text-[100px] lg:leading-none",
-                )}
-              >
-                FULLSTACK
-              </span>
-              <span
-                className={cn(
-                  "font-bold text-[30px] text-[#353334] tracking-tighter",
-                  "md:text-[60px]",
-                  "lg:text-[100px] lg:mt-5",
-                )}
-              >
-                DEVELOPER
-              </span>
-            </div>
-            <p
-              className={cn(
-                "font-hanken text-muted-foreground text-[18px] mt-5",
-                "md:mt-2",
-                "lg:w-[480px] lg:mt-0 lg:ml-2",
-              )}
-            >
-              {personalInfo.bio}
-            </p>
-            <div
-              className={cn(
-                "flex justify-start items-center gap-4 mt-10",
-                "md:gap-6",
-                "lg:gap-8 lg:mt-15 lg:ml-4",
-              )}
-            >
-              <button
-                className={cn(
-                  "bg-secondary hover:bg-foreground/12 border border-border text-foreground/90 px-3 py-1 rounded-lg cursor-pointer",
-                  "md:px-4 md:py-1.5",
-                )}
-              >
-                <a
-                  href="https://x.com/abhijeet_tw"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex justify-center items-center gap-1"
-                >
-                  {/* <CgNotes className={cn("size-3 rotate-20", "md:size-3.5")} /> */}
-                  {/* Resume */}
-                  <XLogoIcon weight="bold" className={cn("size-4")} />
-                  Twitter
-                </a>
-              </button>
-              <button
-                className={cn(
-                  "bg-[#bb6b00]/10 hover:bg-[#bb6b00]/20 text-[#bb6b00] border border-[#bb6b00]/50 px-3 py-1 rounded-lg cursor-pointer transition-colors duration-200",
-                  "md:px-4 md:py-1.5",
-                )}
-              >
-                <a
-                  href="mailto:abhijeetxdev@gmail.com"
-                  className="flex justify-center items-center gap-2"
-                >
-                  <MdEmail className={cn("size-4 mt-0.5", "md:size-4.5")} />
-                  Send an email
-                </a>
-              </button>
-            </div>
-          </div>
-        </AnimatedWrapper>
+        {/* Vertical Bio Stamp (Desktop Only) */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6 }}
+          className="absolute -left-24 bottom-50 -translate-y-1/2 hidden lg:flex flex-row-reverse items-center gap-4 rotate-90 origin-center"
+        >
+          <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-muted-foreground whitespace-nowrap">
+            Based in India
+          </span>
+          <div className="w-12 h-px bg-[#bb6b00]" />
+        </motion.div>
       </Container>
     </AnimatedWrapper>
   );

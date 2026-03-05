@@ -5,16 +5,23 @@ import { Hero } from "@/components/homeScreen/hero";
 import { Projects } from "@/components/homeScreen/projects";
 import { Quotes } from "@/components/homeScreen/quotes";
 import { Skills } from "@/components/homeScreen/skills";
+import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   return (
-    <Container className="bg-background pt-10 pb-30 md:py-30 flex flex-col gap-10 md:gap-20">
+    <Container
+      className={cn(
+        "bg-background pb-20 flex flex-col gap-10 px-6",
+        "md:gap-20 md:mt-16",
+        "lg:px-0",
+      )}
+    >
       <Hero />
-      <Skills />
-      <Projects />
-      <AboutMe />
-      <Blogs />
-      <Quotes />
+      {/* <Skills /> */}
+      {/* <Projects /> */}
+      {/* <AboutMe /> */}
+      {/* <Blogs /> */}
+      {/* <Quotes /> */}
     </Container>
   );
 }

@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Container className="px-6 lg:px-0">
+    <Container className={cn("px-6 mb-10", "md:mb-0", "lg:px-0")}>
       <footer className="relative w-full border-t border-border/40 bg-background/50 backdrop-blur-sm">
         {/* Top Gradient Line */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/15 to-transparent" />
