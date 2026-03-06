@@ -11,14 +11,14 @@ export default function HomePage() {
   return (
     <Container
       className={cn(
-        "bg-background pb-20 flex flex-col gap-10 px-6",
+        "bg-background pb-20 flex flex-col gap-14 px-6",
         "md:gap-20 md:mt-16",
-        "lg:px-0",
+        "lg:px-0 lg:gap-30",
       )}
     >
       <Hero />
       <Skills />
-      {/* <Projects /> */}
+      <Projects />
       {/* <AboutMe /> */}
       {/* <Blogs /> */}
       {/* <Quotes /> */}

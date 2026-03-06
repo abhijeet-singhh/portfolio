@@ -10,12 +10,12 @@ import {
   LinkIcon,
   PlayCircleIcon,
 } from "@phosphor-icons/react";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { CustomTooltip } from "./custom-tooltip";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogPopup, DialogTrigger } from "../ui/dialog";
 import Image from "next/image";
+import { CustomTooltip } from "./custom-tooltip";
 
 const ICONS: Record<string, React.ElementType> = {
   GithubLogoIcon,
@@ -25,9 +25,7 @@ const ICONS: Record<string, React.ElementType> = {
 
 const IconComponent = ({ icon }: { icon: string }) => {
   const Icon = ICONS[icon];
-  return Icon ? (
-    <Icon weight="bold" className="size-5 text-muted-custom" />
-  ) : null;
+  return Icon ? <Icon weight="bold" className="size-5" /> : null;
 };
 
 const ProjectCard = ({
@@ -53,143 +51,139 @@ const ProjectCard = ({
   }, [isDialogOpen]);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       className={cn(
-        "flex flex-col bg-card-custom border border-accent box-border rounded-xl project-card-shadow group font-hanken",
-        "md:h-[478px]",
-        "lg:w-[420px]",
+        "group relative flex flex-col items-center mb-6 md:mb-8",
+        "md:h-130 lg:w-105",
         className,
       )}
     >
-      {/* Image section */}
-      <div className="relative group w-full h-52 rounded-t-xl overflow-hidden">
-        {/* Image */}
-        <Image
-          src={img}
-          alt={title}
-          fill
-          loading="lazy"
-          className="w-full h-full object-cover"
-        />
-        {/* Gradient Overlay */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-zinc-950/70 via-zinc-950/30 to-transparent z-10"></div>
+      {/* Background Accent (Matches Hero rotate style) */}
+      <div className="absolute inset-0 bg-secondary/30 rounded-[3rem] rotate-3 group-hover:rotate-0 transition-transform duration-500 -z-10" />
 
-        {preview && (
-          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger>
-              {/* Hover Play Button Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center bg-muted/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:backdrop-blur-[2px] cursor-pointer overflow-hidden">
-                <div className="flex items-center justify-center size-16 rounded-full bg-white/20 backdrop-blur-sm transition-colors duration-200 group-hover:cursor-pointer hover:bg-white/30">
-                  <PlayCircleIcon weight="bold" className="size-14" />
-                </div>
-              </div>
-            </DialogTrigger>
-            <DialogPopup className="w-full max-w-5xl border-0 mb-[40vh] md:mb-0">
-              {isDialogOpen && preview && (
-                <div className="aspect-video w-full">
-                  <video
-                    ref={videoRef}
-                    className="h-full w-full rounded-lg object-cover"
-                    src={preview}
-                    autoPlay
-                    loop
-                    controls
-                  />
-                </div>
+      {/* Main Card Body */}
+      <div className="relative w-full h-full flex flex-col bg-background border border-border p-4 rounded-[3rem] shadow-lg group-hover:shadow-xl transition-all duration-500 overflow-hidden">
+        {/* Image Container (Matches Hero Image style) */}
+        <div className="relative w-full aspect-video shrink-0 overflow-hidden rounded-[2.5rem] border-4 border-background shadow-inner">
+          <Image
+            src={img}
+            alt={title}
+            fill
+            className="object-cover filter grayscale-30 group-hover:scale-105 transition-transform duration-700"
+          />
+          {/* Top Status Tag (Matches Hero Bio Tag look) */}
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">
+            <div
+              className={cn(
+                "px-2 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-widest backdrop-blur-md border shadow-black/40 flex items-center gap-1",
+                isLive
+                  ? "bg-green-500/10 border-green-500/20 text-green-600"
+                  : "bg-neutral-900/30 border-neutral-700/20 text-neutral-700",
               )}
-            </DialogPopup>
-          </Dialog>
-        )}
-      </div>
+            >
+              {/* Pulse Dot */}
+              <GoDotFill
+                className={cn(
+                  "animate-pulse",
+                  isLive ? "text-green-500" : "text-neutral-600",
+                  "w-3 h-3 sm:w-4 sm:h-4",
+                )}
+              />
 
-      <div className="px-4 md:px-5 flex-1">
-        {/* Title */}
-        <div className="flex items-center justify-between mt-4">
-          <h3 className="font-semibold text-2xl text-foreground">{title}</h3>
+              {/* Status Text */}
+              {isLive ? "Live" : "Building"}
+            </div>
+          </div>
 
-          {isLive ? (
-            <div className="select-none font-medium text-xs w-fit pl-1.5 pr-2.5 py-0.5 gap-0.5 rounded-md flex items-center bg-green-500/15">
-              <span className="animate-pulse">
-                <GoDotFill className="text-green-500" />
-              </span>
-              Live
-            </div>
-          ) : (
-            <div className="select-none font-medium text-xs w-fit pl-1.5 pr-2.5 py-0.5 gap-0.5 rounded-md flex items-center bg-amber-500/17">
-              <span className="animate-pulse">
-                <GoDotFill className="text-amber-500" />
-              </span>
-              Building
-            </div>
+          {/* Video Trigger */}
+          {preview && (
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px]">
+                <div className="p-3 rounded-full bg-white/20 border border-white/30 text-white">
+                  <PlayCircleIcon size={32} weight="fill" />
+                </div>
+              </DialogTrigger>
+              <DialogPopup className="max-w-4xl p-0 border-0 bg-transparent">
+                <video
+                  ref={videoRef}
+                  src={preview}
+                  autoPlay
+                  loop
+                  controls
+                  className="w-full aspect-video rounded-3xl"
+                />
+              </DialogPopup>
+            </Dialog>
           )}
         </div>
 
-        {/* Content */}
-        <div className="text-muted-custom mt-4">{content}</div>
+        {/* Content Area */}
+        <div className="px-4 py-6 flex flex-col flex-1">
+          {/* Project Header */}
+          <div className="mb-3">
+            <h3 className="text-3xl font-black text-foreground uppercase leading-none tracking-tighter">
+              {title}
+            </h3>
+            {/* Small accent bar like in Hero */}
+            <div className="h-1 w-12 bg-[#bb6b00] mt-2 rounded-full" />
+          </div>
 
-        {/* Technologies */}
-        <div className="flex items-center gap-1 mt-4 border-b border-border pb-5 select-none">
-          {skills.map((skill, index) => {
-            return (
+          <p className="text-sm text-muted-foreground font-hanken leading-relaxed line-clamp-2">
+            {content}
+          </p>
+
+          {/* Tech Stack Pills (Subtle style) */}
+          <div className="flex flex-wrap gap-2 mt-4">
+            {skills.map((skill, i) => (
               <span
-                key={index}
-                className="bg-muted px-2 py-0.5 rounded-md text-xs text-muted-custom w-fit"
+                key={i}
+                className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60"
               >
-                {skill}
+                #{skill}
               </span>
-            );
-          })}
-        </div>
+            ))}
+          </div>
 
-        {/* Links */}
-        <div className="mt-2 flex justify-between items-center">
-          {/* Left section link */}
-          <div className="flex items-center gap-2">
-            {links.map((link, index) => {
-              // const Icon = ICONS[link.icon];
-              return (
+          {/* Footer Actions (Matches Hero Social Link style) */}
+          <div className="mt-auto pt-6 flex items-center justify-between">
+            <div className="flex items-center gap-1 bg-secondary/40 p-1.5 rounded-2xl border border-border">
+              {links.map((link, index) => (
                 <div
                   key={index}
+                  className="relative flex flex-col items-center"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className="relative flex flex-col items-center"
                 >
-                  {link.type === "link" && link.href ? (
-                    <a
-                      href={link.href}
-                      target={link.external ? "_blank" : "_self"}
-                      rel={link.external ? "noopener noreferrer" : undefined}
-                      className="p-2"
-                    >
-                      <IconComponent icon={link.icon} />
-                    </a>
-                  ) : (
-                    // Action buttons (Share)
-                    <button className="p-2 cursor-pointer">
-                      <IconComponent icon={link.icon} />
-                    </button>
-                  )}
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    className="p-2 flex rounded-xl hover:bg-background hover:text-[#bb6b00] transition-all"
+                  >
+                    <IconComponent icon={link.icon} />
+                  </a>
                   <AnimatePresence>
                     {hoveredIndex === index && (
                       <CustomTooltip label={link.label} />
                     )}
                   </AnimatePresence>
                 </div>
-              );
-            })}
-          </div>
+              ))}
+            </div>
 
-          {/* Right section link */}
-          <Link
-            href={`/projects/${slug}`}
-            className="text-sm text-muted-custom flex items-center gap-0.5 w-fit ml-1"
-          >
-            View more
-            <MdArrowRightAlt className="size-5 mt-0.5" />
-          </Link>
+            <Link
+              href={`/projects/${slug}`}
+              className="group/link flex items-center gap-1 text-sm font-bold uppercase tracking-tighter text-[#bb6b00] hover:translate-x-1 transition-transform"
+            >
+              Case Study
+              <MdArrowRightAlt className="size-5" />
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

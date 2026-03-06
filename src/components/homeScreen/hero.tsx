@@ -17,7 +17,7 @@ const Hero = () => {
 
   return (
     <AnimatedWrapper>
-      <Container className="relative pt-12 pb-20 flex flex-col items-center">
+      <Container className="relative pt-12 pb-10 flex flex-col items-center">
         <div className="relative w-full flex flex-col items-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

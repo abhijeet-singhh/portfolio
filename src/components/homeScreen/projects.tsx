@@ -10,12 +10,12 @@ import { AnimatedWrapper } from "@/lib/animated-wrapper";
 const Projects = () => {
   return (
     <AnimatedWrapper>
-      <Container className={cn("mt-15 px-6", "lg:px-0")}>
+      <Container>
         <SectionHeading subHeading="Featured" heading="Projects" />
         <div
           className={cn(
-            "grid grid-cols-1 mt-10 gap-10",
-            "md:grid-cols-2",
+            "grid grid-cols-1 mt-10",
+            "md:grid-cols-2 md:gap-5",
             "lg:gap-12",
           )}
         >
@@ -27,7 +27,7 @@ const Projects = () => {
         </div>
         <Link
           href="/projects"
-          className="flex justify-center items-center mt-10"
+          className="flex justify-center items-center mt-7 md:mt-10"
         >
           <Button variant="outline">Show all projects</Button>
         </Link>

@@ -8,7 +8,7 @@ import { motion } from "motion/react";
 
 const Skills = () => {
   return (
-    <section className="py-10 sm:py-12 lg:py-16">
+    <section>
       <Container>
         <SectionHeading subHeading="Technology" heading="Expertise" />
 
