@@ -36,7 +36,7 @@ const Hero = () => {
             {/* image */}
             <motion.div
               className={cn(
-                "relative w-56 h-72 overflow-hidden rounded-[3rem] border-[6px] border-background shadow-2xl -rotate-6",
+                "relative w-56 h-72 overflow-hidden rounded-[3rem] border-[6px] border-background shadow-2xl -rotate-4",
                 "md:w-64 md:h-80",
               )}
             >

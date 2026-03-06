@@ -17,7 +17,7 @@ export default function HomePage() {
       )}
     >
       <Hero />
-      {/* <Skills /> */}
+      <Skills />
       {/* <Projects /> */}
       {/* <AboutMe /> */}
       {/* <Blogs /> */}
