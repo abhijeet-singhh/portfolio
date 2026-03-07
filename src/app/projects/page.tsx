@@ -7,15 +7,21 @@ import { cn } from "@/lib/utils";
 export default function Projects() {
   return (
     <AnimatedWrapper>
-      <Container className={cn("px-6 pt-10 pb-30", "md:py-30", "lg:px-0")}>
-        <div className="font-hanken text-4xl text-foreground font-bold text-center border-b border-dashed border-border pb-6">
-          Projects
-        </div>
+      <Container
+        className={cn("px-6 pt-10 pb-30", "md:py-30", "lg:px-0", "relative")}
+      >
+        <span
+          className="absolute top-14 md:top-20 left-1/2 -translate-x-1/2 
+             text-[10vw] lg:text-[8vw] font-black text-foreground/5 leading-none 
+             uppercase select-none -z-10 text-center"
+        >
+          PROJECTS
+        </span>
         <div
           className={cn(
-            "grid grid-cols-1 mt-10 gap-10",
-            "md:grid-cols-2 md:mt-15",
-            "lg:gap-12",
+            "grid grid-cols-1 mt-28 gap-10",
+            "md:grid-cols-2 md:mt-30",
+            "lg:gap-12 lg:mt-36",
           )}
         >
           {projects.map((project) => (

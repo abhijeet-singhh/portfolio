@@ -81,7 +81,7 @@ const Skills = () => {
                     {skill.text}
                   </span>
 
-                  <div className="h-[1px] w-0 bg-primary/70 transition-all duration-500 group-hover:w-full" />
+                  <div className="h-px w-0 bg-primary/70 transition-all duration-500 group-hover:w-full" />
                 </div>
 
                 {/* soft glow */}
