@@ -23,7 +23,7 @@ const Blogs = () => {
               <BlogCard key={blog.id} {...blog} />
             ))}
           </div>
-          <div className="flex justify-center items-center mt-10">
+          <div className="flex justify-center items-center mt-18">
             <a
               href="https://abhijeet-singhh.github.io/abhijeetxblogs/index.html"
               target="_blank"

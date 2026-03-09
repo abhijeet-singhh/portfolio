@@ -15,13 +15,16 @@ interface AboutMeProps {
 const AboutMe = ({ wakaComponent }: AboutMeProps) => {
   return (
     <AnimatedWrapper>
-      <Container className="relative py-20">
+      <Container className="relative pt-20 pb-16">
         {/* decorative background text */}
         <motion.h2
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className={cn("absolute top-5 left-0 text-[18vw] font-black text-foreground/5 leading-none uppercase select-none z-0", "md:text-[130px]")}
+          className={cn(
+            "absolute top-5 left-0 text-[18vw] font-black text-foreground/5 leading-none uppercase select-none z-0",
+            "md:text-[130px]",
+          )}
         >
           STORY
         </motion.h2>
@@ -48,7 +51,7 @@ const AboutMe = ({ wakaComponent }: AboutMeProps) => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{duration: 0.3}}
+              transition={{ duration: 0.3 }}
               className="absolute -bottom-4 -right-4 bg-[#bb6b00] text-white p-4 rounded-2xl rotate-8 md:rotate-12 shadow-lg"
             >
               <p className="font-caveat text-2xl whitespace-nowrap">
@@ -63,7 +66,7 @@ const AboutMe = ({ wakaComponent }: AboutMeProps) => {
               <motion.p
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{duration: 0.3, ease: "easeInOut"}}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="text-[11px] font-bold text-[#bb6b00] uppercase tracking-[0.3em]"
               >
                 01 / Get to know me
@@ -87,7 +90,9 @@ const AboutMe = ({ wakaComponent }: AboutMeProps) => {
                 <div className="flex items-center gap-1.5 font-mono text-[11px] sm:text-xs">
                   <span className="text-muted-foreground/60">~/abhijeet</span>
                   <span className="text-[#bb6b00]">$</span>
-                  <span className="text-foreground animate-pulse-slow">whoami.sh</span>
+                  <span className="text-foreground animate-pulse-slow">
+                    whoami.sh
+                  </span>
                 </div>
               </motion.div>
             </div>
@@ -95,7 +100,7 @@ const AboutMe = ({ wakaComponent }: AboutMeProps) => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{duration: 0.3}}
+              transition={{ duration: 0.3 }}
               className="relative group"
             >
               <div className="absolute -left-6 top-2 bottom-2 w-0.75 bg-linear-to-b from-[#bb6b00] to-transparent hidden md:block opacity-70 group-hover:opacity-100 transition-opacity duration-300" />

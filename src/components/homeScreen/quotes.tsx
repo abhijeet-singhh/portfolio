@@ -22,7 +22,9 @@ export const Quotes = () => {
   const quote = quotes[quoteIdx];
 
   return (
-    <Container className={cn("px-4 sm:px-6 lg:px-0 lg:mt-10 relative z-10")}>
+    <Container
+      className={cn("px-4 sm:px-6 lg:px-0 lg:mt-10 lg:mb-20 relative z-10")}
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -30,11 +32,7 @@ export const Quotes = () => {
         transition={{ duration: 0.6 }}
         className="relative max-w-4xl mx-auto"
       >
-        <div className="relative glass-card rounded-3xl border-border/60 p-6 sm:p-10 md:p-12 overflow-hidden text-center flex flex-col items-center justify-center min-h-[240px] border border-border">
-          {/* Decorative gradients (slightly smaller) */}
-          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none translate-y-1/2 -translate-x-1/2"></div>
-
+        <div className="relative glass-card rounded-3xl border-border/90 p-6 sm:p-10 md:p-12 overflow-hidden text-center flex flex-col items-center justify-center min-h-60 border border-border">
           <FaQuoteLeft className="absolute top-6 left-6 sm:top-8 sm:left-8 size-8 sm:size-10 text-foreground/5 dark:text-foreground/10" />
           <FaQuoteRight className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 size-8 sm:size-10 text-foreground/5 dark:text-foreground/10" />
 
@@ -48,7 +46,7 @@ export const Quotes = () => {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="flex flex-col items-center gap-6"
               >
-                <p className="text-lg sm:text-xl md:text-2xl text-foreground font-medium italic leading-relaxed tracking-wide font-serif">
+                <p className="text-lg sm:text-lg md:text-xl lg:text-2xl text-foreground font-medium italic leading-relaxed tracking-wide font-serif">
                   "{quote?.quote}"
                 </p>
 

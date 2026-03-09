@@ -31,8 +31,8 @@ const Skills = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{
-                  opacity: { duration: 0.35, delay: index * 0.04 },
-                  y: { duration: 0.35, delay: index * 0.04 },
+                  opacity: { duration: 0.35, delay: index * 0.02 },
+                  y: { duration: 0.35, delay: index * 0.02 },
                 }}
                 /* hover animation */
                 whileHover={{

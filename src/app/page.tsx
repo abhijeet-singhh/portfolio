@@ -21,8 +21,8 @@ export default function HomePage() {
       <Skills />
       <Projects />
       <AboutMe wakaComponent={<WakaTime />} />
-      {/* <Blogs /> */}
-      {/* <Quotes /> */}
+      <Blogs />
+      <Quotes />
     </Container>
   );
 }
