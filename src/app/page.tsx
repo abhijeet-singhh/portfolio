@@ -1,4 +1,5 @@
 import { Container } from "@/components/core/Container";
+import { WakaTime } from "@/components/core/waka-time";
 import { AboutMe } from "@/components/homeScreen/about-me";
 import { Blogs } from "@/components/homeScreen/blogs";
 import { Hero } from "@/components/homeScreen/hero";
@@ -19,7 +20,7 @@ export default function HomePage() {
       <Hero />
       <Skills />
       <Projects />
-      {/* <AboutMe /> */}
+      <AboutMe wakaComponent={<WakaTime />} />
       {/* <Blogs /> */}
       {/* <Quotes /> */}
     </Container>

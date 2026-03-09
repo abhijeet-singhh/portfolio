@@ -1,92 +1,84 @@
 import { getWakaStatus } from "@/lib/wakatime";
 import { GoDotFill } from "react-icons/go";
 import { RefreshHandler } from "./refresh-handler";
-import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { CodeXml, Coffee, Terminal } from "lucide-react";
 
-export const revalidate = 300;
+export const revalidate = process.env.NODE_ENV === "development" ? 86400 : 300;
 
 const WakaTime = async () => {
   const status = await getWakaStatus();
 
-  // Handle API failure/Offline edge case
-  if (!status || !status.success) {
-    return (
-      <div className="flex flex-col gap-1 px-4 py-2 rounded-xl bg-card-custom border border-border w-fit">
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-1 text-[13px] font-bold text-muted-custom tracking-wider">
-            <GoDotFill className="size-4 mt-0.5" />
-            <span>Offline</span>
-            <span className="flex items-center gap-0.5 ml-1">
-              <Image
-                fill
-                src="/icons/neovim-logo.svg"
-                alt="neovim"
-                className="size-4"
-              />
-              <p>neovim</p>
-            </span>
-          </div>
-          <div className="text-[13px] text-muted-custom font-semibold ml-1">
-            Coding stats are unavailable right now.
+  const StatusCard = ({ isOnline, title, subtitle, icon: Icon }: any) => (
+    <div className="group relative flex items-center gap-5 px-5 py-4 rounded-2xl bg-secondary/10 border border-border/40 hover:border-primary/40 hover:bg-secondary/20 transition-all duration-500 w-fit backdrop-blur-md shadow-sm">
+      
+      {/* Status Glow Indicator */}
+      <div className="relative flex items-center justify-center shrink-0">
+        <GoDotFill className={cn(
+          "size-4 z-10 transition-colors duration-500",
+          isOnline ? "text-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.5)]" : "text-muted-foreground/40"
+        )} />
+        {isOnline && (
+          <div className="absolute size-4 bg-emerald-500/30 rounded-full animate-ping" />
+        )}
+      </div>
+
+      <div className="flex flex-col gap-1">
+        {/* Top Header Row */}
+        <div className="flex items-center gap-3">
+          <span className="text-[10px] uppercase tracking-[0.25em] font-extrabold text-muted-foreground/80">
+            {isOnline ? "Live Session" : "Previous Session"}
+          </span>
+          <div className="h-px w-6 bg-border/60 hidden md:block" />
+          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-background/50 border border-border/40">
+            <Terminal className="size-3 text-primary/60" />
+            <span className="text-[11px] font-bold text-foreground/70">neovim</span>
           </div>
         </div>
+
+        {/* Content Row */}
+        <div className="flex items-center gap-2.5">
+          <Icon className={cn(
+            "size-5 transition-transform duration-500 group-hover:scale-110",
+            isOnline ? "text-primary" : "text-muted-foreground"
+          )} />
+          <p className="text-[15px] font-medium tracking-tight text-foreground/90">
+            {title} <span className="font-bold text-primary tabular-nums">{subtitle}</span>
+          </p>
+        </div>
       </div>
+
+      <RefreshHandler interval={300000} />
+    </div>
+  );
+
+  if (!status || !status.success) {
+    return (
+      <StatusCard 
+        isOnline={false} 
+        title="Status" 
+        subtitle="Offline" 
+        icon={Coffee} 
+      />
     );
   }
 
   return (
     <div className="w-fit">
-      {/* Invisible component that handles the auto-refresh logic */}
-      <RefreshHandler interval={300000} />
-
       {status.isCoding ? (
-        /* -- Online State -- */
-        <div className="flex flex-col gap-1 px-4 py-2 rounded-xl bg-card-custom border border-border w-fit">
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-1 text-[13px] font-bold text-muted-custom dark:text-neutral-300 tracking-wider">
-              <GoDotFill className="size-4 mt-0.5 animate-pulse text-green-500" />
-              <span>Online</span>
-              <span className="flex items-center gap-0.5 ml-1">
-                <Image
-                  fill
-                  src="/icons/neovim-logo.svg"
-                  alt="neovim"
-                  className="size-4"
-                />
-                <p>neovim</p>
-              </span>
-            </div>
-            <div className="flex items-center gap-1 text-[13px] text-muted-custom font-semibold ml-1">
-              Today working for
-              <span className="font-bold text-zinc-500 dark:text-neutral-300">
-                {status.todayText}
-              </span>
-            </div>
-          </div>
-        </div>
+        <StatusCard 
+          isOnline={true} 
+          title="Coding for" 
+          subtitle={status.todayText} 
+          icon={CodeXml} 
+        />
       ) : (
-        /* -- Offline State -- */
-        <div className="flex flex-col gap-1 px-4 py-2 rounded-xl bg-card-custom border border-border w-fit">
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-1 text-[13px] font-bold text-muted-custom tracking-wider">
-              <GoDotFill className="size-4 mt-0.5" />
-              <span>Offline</span>
-              <span className="flex items-center gap-0.5 ml-1">
-                <Image
-                  fill
-                  src="/icons/neovim-logo.svg"
-                  alt="neovim"
-                  className="size-4"
-                />
-                <p>neovim</p>
-              </span>
-            </div>
-            <div className="text-[13px] text-muted-custom font-semibold ml-1">
-              Yesterday worked for
-              <span className="text-zinc-300">{status.yesterdayText}</span>
-            </div>
-          </div>
-        </div>
+        <StatusCard 
+          isOnline={false} 
+          title="Yesterday :" 
+          subtitle={status.yesterdayText} 
+          icon={Coffee} 
+        />
       )}
     </div>
   );
