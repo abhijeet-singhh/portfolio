@@ -109,7 +109,7 @@ const BlogCard = ({
         </div>
 
         {/* Glow */}
-        <div className="absolute -bottom-12 -left-10 size-32 bg-[#bb6b00]/10 blur-[60px] rounded-full group-hover:bg-[#bb6b00]/20 transition-colors" />
+        <div className="absolute -bottom-12 -left-10 size-32 bg-[#bb6b00]/10 blur-[60px] rounded-full group-hover:bg-[#bb6b00]/15 transition-colors" />
       </div>
     </motion.div>
   );

@@ -100,7 +100,7 @@ export default async function ProjectPage({
 
           <div className="relative w-full aspect-video rounded-[2.5rem]">
             {/* Rotated background behind video */}
-            <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-800 rounded-[2.5rem] -rotate-3 -z-10" />
+            <div className="absolute inset-0 bg-neutral-200 dark:bg-neutral-800 rounded-[2.5rem] -rotate-5 -z-10" />
 
             <div className="relative w-full h-full rounded-[2.5rem] border-4 border-background shadow-xl overflow-hidden">
               {preview ? (
@@ -151,7 +151,7 @@ export default async function ProjectPage({
             </h3>
             <div
               className={cn(
-                "flex flex-col gap-3 border",
+                "flex flex-col gap-3",
                 "md:flex-row md:w-full",
                 "lg:flex-col",
               )}

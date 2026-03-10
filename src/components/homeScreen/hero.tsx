@@ -145,7 +145,7 @@ const Hero = () => {
               Contact Me <MdEmail className="size-5" />
             </Link>
 
-            <div className="flex items-center gap-2 bg-secondary/50 p-2 rounded-2xl border border-border">
+            <div className="w-52 md:w-fit flex items-center gap-2 bg-secondary/50 p-2 rounded-2xl border border-border">
               {socialLinks.map((item, index) => {
                 const Icon = item.icon;
                 return (
