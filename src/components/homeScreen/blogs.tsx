@@ -2,7 +2,8 @@ import { cn } from "@/lib/utils";
 import { Container } from "../core/Container";
 import { SectionHeading } from "../core/section-heading";
 import { blogs } from "@/data/portfolio";
-import { BlogCard } from "../core/blog-card";
+// import { BlogCard } from "../core/blog-card";
+import { BlogCard } from "../core/blog-card-line";
 import { Button } from "../ui/button";
 import { AnimatedWrapper } from "@/lib/animated-wrapper";
 

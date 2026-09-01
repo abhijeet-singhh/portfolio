@@ -1,7 +1,8 @@
 import { projects } from "@/data/portfolio";
 import { Container } from "../core/Container";
 import { SectionHeading } from "../core/section-heading";
-import { ProjectCard } from "../core/project-card";
+// import { ProjectCard } from "../core/project-card";
+import { ProjectCard } from "../core/project-card-line";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -15,7 +16,7 @@ const Projects = () => {
         <div
           className={cn(
             "grid grid-cols-1 mt-10",
-            "md:grid-cols-2 md:gap-5",
+            "md:grid-cols-1 md:gap-5",
             "lg:gap-12",
           )}
         >
